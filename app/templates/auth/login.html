@@ -1,49 +1,46 @@
 {% extends 'base.html' %}
 
-{% block title %}Login - Journal & Patent Tracker{% endblock %}
+{% block title %}AUTH // Login — AGENTIC.DAT{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center my-5">
     <div class="col-md-5">
-        <div class="card shadow-lg border-0 rounded-4">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span>AUTH // OPERATOR SIGN-IN</span>
+                <span class="badge bg-primary">CSE476</span>
+            </div>
             <div class="card-body p-4 p-md-5">
-                <div class="text-center mb-4">
-                    <div class="bg-primary bg-gradient text-white rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                        <i class="fa-solid fa-lock fs-3"></i>
-                    </div>
-                    <h3 class="fw-bold">Welcome Back</h3>
-                    <p class="text-muted">Log in to manage your research library</p>
+                <div class="mb-4 pb-3 border-bottom border-dark">
+                    <div class="font-mono small text-primary fw-bold">AGENTIC.DAT // GROUP 16</div>
+                    <h3 class="fw-bold mb-1">System Access</h3>
+                    <p class="text-muted small mb-0 font-mono">Default: <code>researcher</code> / <code>password123</code> or <code>admin</code> / <code>admin123</code></p>
                 </div>
 
                 <form method="POST" action="{{ url_for('auth.login') }}">
                     <div class="mb-3">
                         <label for="username" class="form-label">Username or Email</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-secondary border-secondary"><i class="fa-solid fa-user text-muted"></i></span>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username or email" required autofocus>
-                        </div>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="researcher" required autofocus>
                     </div>
 
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-secondary border-secondary"><i class="fa-solid fa-key text-muted"></i></span>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
-                        </div>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="••••••••" required>
                     </div>
 
                     <div class="mb-4 form-check">
                         <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                        <label class="form-check-label text-muted" for="remember">Remember me</label>
+                        <label class="form-check-label font-mono small text-muted" for="remember">PERSIST SESSION</label>
                     </div>
 
-                    <button type="submit" class="btn btn-primary w-100 py-2 rounded-3 fw-semibold">
-                        <i class="fa-solid fa-right-to-bracket me-2"></i>Log In
+                    <button type="submit" class="btn btn-primary w-100 py-2">
+                        AUTHENTICATE &rarr;
                     </button>
                 </form>
 
-                <div class="text-center mt-4 pt-3 border-top border-secondary">
-                    <p class="mb-0 text-muted">Don't have an account? <a href="{{ url_for('auth.register') }}" class="text-primary text-decoration-none fw-semibold">Register here</a></p>
+                <div class="text-center mt-4 pt-3 border-top border-dark font-mono small">
+                    <span class="text-muted">NEW OPERATOR?</span>
+                    <a href="{{ url_for('auth.register') }}" class="text-primary fw-bold text-decoration-none ms-1">REGISTER ACCOUNT</a>
                 </div>
             </div>
         </div>

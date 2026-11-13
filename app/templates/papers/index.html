@@ -1,39 +1,38 @@
 {% extends 'base.html' %}
 
-{% block title %}Research Papers - Journal & Patent Tracker{% endblock %}
+{% block title %}02. CORPUS // Research Papers Library{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4 pb-2 border-bottom border-dark">
     <div>
-        <h2 class="fw-bold mb-1"><i class="fa-solid fa-book-bookmark text-primary me-2"></i>Research Papers</h2>
-        <p class="text-muted mb-0">Manage and organize your research paper library.</p>
+        <div class="font-mono small text-primary fw-bold">ARCHIVE // 02. GROUNDED PAPER CORPUS</div>
+        <h2 class="fw-bold mb-0">Research Paper Corpus</h2>
     </div>
     <div class="d-flex gap-2">
-        <a href="{{ url_for('papers.create') }}" class="btn btn-primary"><i class="fa-solid fa-plus me-1"></i>Add Paper</a>
-        <a href="{{ url_for('export.export_papers') }}" class="btn btn-outline-success"><i class="fa-solid fa-file-csv me-1"></i>Export CSV</a>
-        <a href="{{ url_for('export.export_papers_bibtex') }}" class="btn btn-outline-info"><i class="fa-solid fa-file-code me-1"></i>Export BibTeX</a>
+        <a href="{{ url_for('papers.create') }}" class="btn btn-primary"><i class="fa-solid fa-plus me-1"></i>ADD PAPER TO CORPUS</a>
+        <a href="{{ url_for('academic_team.index') }}" class="btn btn-outline-secondary">RUN MULTI-AGENT PIPELINE</a>
     </div>
 </div>
 
-<div class="card mb-4 border-0 bg-secondary shadow-sm">
+<div class="card mb-4">
     <div class="card-body py-3">
         <form method="GET" action="{{ url_for('papers.index') }}" class="row g-3 align-items-center">
             <div class="col-md-7">
                 <div class="input-group">
-                    <span class="input-group-text bg-dark border-dark text-muted"><i class="fa-solid fa-magnifying-glass"></i></span>
-                    <input type="text" class="form-control bg-dark text-light border-dark" name="q" value="{{ query }}" placeholder="Search title, author, journal, or keywords...">
+                    <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="form-control" name="q" value="{{ query }}" placeholder="Filter corpus by title, author, journal, or keywords...">
                 </div>
             </div>
             <div class="col-md-3">
-                <select class="form-select bg-dark text-light border-dark" name="status">
-                    <option value="" {% if not status_filter %}selected{% endif %}>All Statuses</option>
-                    <option value="Unread" {% if status_filter == 'Unread' %}selected{% endif %}>Unread</option>
-                    <option value="Reading" {% if status_filter == 'Reading' %}selected{% endif %}>Reading</option>
-                    <option value="Completed" {% if status_filter == 'Completed' %}selected{% endif %}>Completed</option>
+                <select class="form-select" name="status">
+                    <option value="" {% if not status_filter %}selected{% endif %}>ALL STATUSES</option>
+                    <option value="Unread" {% if status_filter == 'Unread' %}selected{% endif %}>UNREAD</option>
+                    <option value="Reading" {% if status_filter == 'Reading' %}selected{% endif %}>READING</option>
+                    <option value="Completed" {% if status_filter == 'Completed' %}selected{% endif %}>COMPLETED</option>
                 </select>
             </div>
             <div class="col-md-2 d-flex gap-2">
-                <button type="submit" class="btn btn-primary w-100">Filter</button>
+                <button type="submit" class="btn btn-primary w-100">FILTER</button>
                 {% if query or status_filter %}
                 <a href="{{ url_for('papers.index') }}" class="btn btn-outline-secondary"><i class="fa-solid fa-rotate-left"></i></a>
                 {% endif %}
@@ -42,66 +41,65 @@
     </div>
 </div>
 
-<div class="card shadow-sm border-0">
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <span>INDEXED CORPUS DOCUMENTS ({{ papers|length }})</span>
+        <span class="font-mono small text-muted">RAG GROUNDING SOURCE</span>
+    </div>
     <div class="card-body p-0">
         {% if papers %}
         <div class="table-responsive">
-            <table class="table table-dark table-hover mb-0 align-middle">
-                <thead class="table-secondary">
+            <table class="table table-hover mb-0 align-middle">
+                <thead>
                     <tr>
-                        <th style="width: 35%;">Title / Authors</th>
-                        <th style="width: 20%;">Journal / Year</th>
-                        <th style="width: 15%;">DOI</th>
-                        <th style="width: 12%;">Status</th>
-                        <th style="width: 18%;" class="text-end">Actions</th>
+                        <th style="width: 38%;">Title / Authors</th>
+                        <th style="width: 22%;">Venue / Year</th>
+                        <th style="width: 16%;">DOI</th>
+                        <th style="width: 10%;">Status</th>
+                        <th style="width: 14%;" class="text-end">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for p in papers %}
                     <tr>
                         <td>
-                            <a href="{{ url_for('papers.detail', paper_id=p.id) }}" class="fw-bold text-light text-decoration-none">
+                            <a href="{{ url_for('papers.detail', paper_id=p.id) }}" class="fw-bold text-decoration-none">
                                 {{ p.title }}
                             </a>
-                            <div class="small text-muted text-truncate" style="max-width: 320px;">
-                                <i class="fa-solid fa-user-pen me-1 fs-8"></i>{{ p.authors or 'Authors not listed' }}
+                            <div class="small text-muted text-truncate" style="max-width: 420px;">
+                                {{ p.authors or 'Authors not listed' }}
                             </div>
                         </td>
                         <td>
-                            <div>{{ p.journal or 'N/A' }}</div>
-                            <small class="text-muted">{{ p.publication_year or '' }}</small>
+                            <div class="small fw-semibold">{{ p.journal or 'N/A' }}</div>
+                            <small class="font-mono text-muted">{{ p.publication_year or '' }}</small>
                         </td>
                         <td>
                             {% if p.doi %}
-                            <a href="https://doi.org/{{ p.doi }}" target="_blank" class="badge bg-secondary border text-decoration-none" title="{{ p.doi }}">
-                                <i class="fa-solid fa-arrow-up-right-from-square me-1 fs-8"></i>{{ p.doi[:15] }}...
+                            <a href="https://doi.org/{{ p.doi }}" target="_blank" class="badge bg-secondary text-decoration-none" title="{{ p.doi }}">
+                                {{ p.doi[:18] }}{% if p.doi|length > 18 %}...{% endif %}
                             </a>
                             {% else %}
-                            <span class="text-muted fs-7">None</span>
+                            <span class="font-mono small text-muted">N/A</span>
                             {% endif %}
                         </td>
                         <td>
                             {% if p.status == 'Completed' %}
-                            <span class="badge bg-success">Completed</span>
+                            <span class="badge bg-success">COMPLETED</span>
                             {% elif p.status == 'Reading' %}
-                            <span class="badge bg-warning text-dark">Reading</span>
+                            <span class="badge bg-warning">READING</span>
                             {% else %}
-                            <span class="badge bg-secondary">Unread</span>
+                            <span class="badge bg-secondary">UNREAD</span>
                             {% endif %}
                         </td>
                         <td class="text-end">
-                            <div class="btn-group btn-group-sm">
-                                <a href="{{ url_for('papers.detail', paper_id=p.id) }}" class="btn btn-outline-info" title="View Details">
-                                    <i class="fa-solid fa-eye"></i>
+                            <div class="d-inline-flex gap-1">
+                                <a href="{{ url_for('papers.detail', paper_id=p.id) }}" class="btn btn-outline-secondary btn-sm" title="View Details">
+                                    VIEW
                                 </a>
-                                <a href="{{ url_for('papers.edit', paper_id=p.id) }}" class="btn btn-outline-primary" title="Edit">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                <a href="{{ url_for('papers.edit', paper_id=p.id) }}" class="btn btn-outline-primary btn-sm" title="Edit">
+                                    EDIT
                                 </a>
-                                <form method="POST" action="{{ url_for('papers.delete', paper_id=p.id) }}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this paper?');">
-                                    <button type="submit" class="btn btn-outline-danger" title="Delete">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </button>
-                                </form>
                             </div>
                         </td>
                     </tr>
@@ -110,11 +108,10 @@
             </table>
         </div>
         {% else %}
-        <div class="text-center py-5">
-            <i class="fa-solid fa-book-open fs-1 text-muted opacity-50 mb-3"></i>
-            <h5>No Research Papers Found</h5>
-            <p class="text-muted">Try adjusting your search filters or add a new paper to your library.</p>
-            <a href="{{ url_for('papers.create') }}" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus me-1"></i>Add Paper</a>
+        <div class="text-center py-5 font-mono">
+            <h5 class="fw-bold">NO PAPERS FOUND IN CORPUS</h5>
+            <p class="text-muted small">Add a paper or clear active filters.</p>
+            <a href="{{ url_for('papers.create') }}" class="btn btn-primary btn-sm">ADD PAPER</a>
         </div>
         {% endif %}
     </div>

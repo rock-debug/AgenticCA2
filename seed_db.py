@@ -5,8 +5,7 @@ Creates default researcher and admin accounts and populates the research corpus.
 
 from app import create_app
 from app.extensions import db
-from app.models.user import User
-from app.models.paper import ResearchPaper, PaperChunk
+from app.models import User, ResearchPaper, PaperChunk
 from app.agents.corpus import DEFAULT_PAPER_CORPUS
 
 def seed():

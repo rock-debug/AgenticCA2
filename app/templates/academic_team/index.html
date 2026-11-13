@@ -1,148 +1,179 @@
 {% extends "base.html" %}
 
-{% block title %}Academic Research Assistant Team | Multi-Agent System (CSE476){% endblock %}
+{% block title %}AGENTIC.DAT // Multi-Agent Research Pipeline (CSE476){% endblock %}
 
 {% block content %}
-<div class="container-fluid py-4 px-md-5">
+<div class="py-2">
 
-    <!-- Header Banner -->
-    <div class="p-4 p-md-5 mb-4 rounded-4 bg-gradient shadow-sm border" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f766e 100%); color: #f8fafc;">
-        <div class="row align-items-center">
+    <!-- 01. Blueprint Hero Banner -->
+    <div class="blueprint-hero mb-4">
+        <div class="row align-items-center g-4">
             <div class="col-lg-8">
-                <div class="d-flex align-items-center gap-2 mb-2">
-                    <span class="badge bg-primary text-white px-3 py-1 rounded-pill fw-semibold">CSE476: Task 2</span>
-                    <span class="badge bg-info text-dark px-3 py-1 rounded-pill fw-semibold">Group 16: Academic Research Assistant Team</span>
-                    <span class="badge bg-warning text-dark px-3 py-1 rounded-pill fw-semibold">Group of 3 Extension Included</span>
+                <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                    <span class="badge bg-primary">CSE476 // TASK 02</span>
+                    <span class="badge bg-secondary">GROUP 16: ACADEMIC RESEARCH TEAM</span>
+                    <span class="badge bg-warning">GROUP-OF-3 CONTRADICTION AGENT INCLUDED</span>
                 </div>
-                <h1 class="display-6 fw-bold mb-2">Academic Research Assistant Multi-Agent System</h1>
-                <p class="lead fs-6 text-light opacity-75 mb-0">
-                    A multi-agent system executing a <strong>Pipeline with RAG and Critic Architecture</strong> built on 
-                    <strong>Microsoft Semantic Kernel</strong>. Automated query decomposition, grounded retrieval, thematic clustering, 
-                    entailment critic audit, cross-source contradiction detection, and defensible literature synthesis.
+                <h1 class="display-6 fw-bold mb-2">
+                    Academic Research Assistant Multi-Agent System
+                </h1>
+                <p class="mb-0 text-muted" style="max-width: 780px; font-size: 0.98rem;">
+                    Production multi-agent workflow executing a <strong>Pipeline with RAG and a Critic Architecture</strong>
+                    built on <strong>Microsoft Semantic Kernel</strong>. Performs query decomposition, grounded corpus RAG,
+                    thematic synthesis, adversarial Critic entailment verification, cross-source contradiction reporting,
+                    and publication-grade citation compilation.
                 </p>
             </div>
-            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-                <div class="bg-white bg-opacity-10 p-3 rounded-3 border border-light border-opacity-25">
-                    <div class="d-flex justify-content-between mb-1">
-                        <small class="text-uppercase text-light opacity-75">Agents in Pipeline</small>
-                        <span class="fw-bold text-white">6 Specialized Agents</span>
+            <div class="col-lg-4">
+                <div class="blueprint-spec-box">
+                    <div class="d-flex justify-content-between border-bottom border-dark pb-2 mb-2">
+                        <span class="text-muted">ROSTER TOPOLOGY</span>
+                        <span class="fw-bold">06 MODULAR AGENTS</span>
                     </div>
-                    <div class="d-flex justify-content-between mb-1">
-                        <small class="text-uppercase text-light opacity-75">Architecture</small>
-                        <span class="fw-bold text-info">Pipeline + RAG + Critic</span>
+                    <div class="d-flex justify-content-between border-bottom border-dark pb-2 mb-2">
+                        <span class="text-muted">COORDINATION</span>
+                        <span class="fw-bold text-primary">PIPELINE + RAG + CRITIC</span>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <small class="text-uppercase text-light opacity-75">Tools per Agent</small>
-                        <span class="fw-bold text-warning">&ge; 2 Plain Python Functions</span>
+                        <span class="text-muted">TOOL CONTRACT</span>
+                        <span class="fw-bold text-success">&ge; 2 PYTHON TOOLS / AGENT</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Pipeline Architecture Visualizer -->
-    <div class="card shadow-sm border-0 mb-4 rounded-4">
-        <div class="card-body p-4">
-            <h6 class="text-uppercase text-muted fw-bold mb-3 tracking-wider"><i class="fa-solid fa-route text-primary me-2"></i>Multi-Agent Coordination Pipeline Architecture</h6>
-            <div class="row g-2 text-center">
+    <!-- 02. Pipeline Architecture Visualizer -->
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span><i class="fa-solid fa-diagram-project text-primary me-2"></i>01 // MULTI-AGENT COORDINATION PIPELINE ARCHITECTURE</span>
+            <span class="font-mono small text-muted">STATE: {% if result %}EXECUTED ({{ result.run_id }}){% else %}STANDBY{% endif %}</span>
+        </div>
+        <div class="card-body">
+            <div class="row g-3 text-center">
                 <!-- Agent 1 -->
                 <div class="col-6 col-md-2">
-                    <div class="p-3 rounded-3 border {% if result %}bg-primary-subtle border-primary text-primary{% else %}bg-light text-secondary{% endif %} h-100">
+                    <div class="agent-step-card {% if result %}active-step{% endif %}">
+                        <div class="agent-step-num mb-1">AGENT // 01</div>
                         <div class="fs-4 mb-1"><i class="fa-solid fa-magnifying-glass-arrow-right"></i></div>
-                        <div class="fw-bold small">1. Query Agent</div>
-                        <small class="d-block text-muted" style="font-size: 0.75rem;">Decomposition & Lexicon</small>
+                        <div class="fw-bold small">Query Agent</div>
+                        <small class="d-block text-muted mt-1" style="font-size: 0.74rem;">
+                            <code>decompose_research_question</code><br>
+                            <code>expand_academic_lexicon</code>
+                        </small>
                     </div>
                 </div>
                 <!-- Agent 2 -->
                 <div class="col-6 col-md-2">
-                    <div class="p-3 rounded-3 border {% if result %}bg-primary-subtle border-primary text-primary{% else %}bg-light text-secondary{% endif %} h-100">
+                    <div class="agent-step-card {% if result %}active-step{% endif %}">
+                        <div class="agent-step-num mb-1">AGENT // 02</div>
                         <div class="fs-4 mb-1"><i class="fa-solid fa-database"></i></div>
-                        <div class="fw-bold small">2. Retrieval Agent</div>
-                        <small class="d-block text-muted" style="font-size: 0.75rem;">Corpus RAG & Citation Tags</small>
+                        <div class="fw-bold small">Retrieval Agent</div>
+                        <small class="d-block text-muted mt-1" style="font-size: 0.74rem;">
+                            <code>search_paper_passages</code><br>
+                            <code>filter_and_rank_passages</code>
+                        </small>
                     </div>
                 </div>
                 <!-- Agent 3 -->
                 <div class="col-6 col-md-2">
-                    <div class="p-3 rounded-3 border {% if result %}bg-primary-subtle border-primary text-primary{% else %}bg-light text-secondary{% endif %} h-100">
+                    <div class="agent-step-card {% if result %}active-step{% endif %}">
+                        <div class="agent-step-num mb-1">AGENT // 03</div>
                         <div class="fs-4 mb-1"><i class="fa-solid fa-layer-group"></i></div>
-                        <div class="fw-bold small">3. Summary Agent</div>
-                        <small class="d-block text-muted" style="font-size: 0.75rem;">Thematic Clustering</small>
+                        <div class="fw-bold small">Summary Agent</div>
+                        <small class="d-block text-muted mt-1" style="font-size: 0.74rem;">
+                            <code>cluster_passages_by_themes</code><br>
+                            <code>draft_themed_synthesis</code>
+                        </small>
                     </div>
                 </div>
                 <!-- Agent 4: CRITIC -->
                 <div class="col-6 col-md-2">
-                    <div class="p-3 rounded-3 border {% if result %}bg-danger-subtle border-danger text-danger{% else %}bg-light text-secondary{% endif %} h-100 position-relative">
-                        <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger" style="font-size: 0.65rem;">THE CRITIC</span>
-                        <div class="fs-4 mb-1"><i class="fa-solid fa-shield-halved"></i></div>
-                        <div class="fw-bold small">4. Fact-Check Agent</div>
-                        <small class="d-block text-muted" style="font-size: 0.75rem;">NLI Entailment Gate</small>
+                    <div class="agent-step-card critic-step">
+                        <div class="agent-step-num mb-1">CRITIC // 04</div>
+                        <div class="fs-4 mb-1 text-primary"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="fw-bold small">Fact-Check Agent</div>
+                        <small class="d-block text-muted mt-1" style="font-size: 0.74rem;">
+                            <code>extract_atomic_claims</code><br>
+                            <code>audit_claim_entailment</code>
+                        </small>
                     </div>
                 </div>
                 <!-- Agent 5: CONTRADICTION -->
                 <div class="col-6 col-md-2">
-                    <div class="p-3 rounded-3 border {% if result %}bg-warning-subtle border-warning text-dark{% else %}bg-light text-secondary{% endif %} h-100 position-relative">
-                        <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-warning text-dark" style="font-size: 0.65rem;">GROUP OF 3</span>
-                        <div class="fs-4 mb-1"><i class="fa-solid fa-scale-balanced"></i></div>
-                        <div class="fw-bold small">5. Contradiction Agent</div>
-                        <small class="d-block text-muted" style="font-size: 0.75rem;">Dual Positions</small>
+                    <div class="agent-step-card group3-step">
+                        <div class="agent-step-num mb-1" style="color: var(--accent-amber);">GROUP-OF-3 // 05</div>
+                        <div class="fs-4 mb-1 text-warning"><i class="fa-solid fa-scale-balanced"></i></div>
+                        <div class="fw-bold small">Contradiction Agent</div>
+                        <small class="d-block text-muted mt-1" style="font-size: 0.74rem;">
+                            <code>detect_cross_source_divergence</code><br>
+                            <code>synthesize_contradiction_dossier</code>
+                        </small>
                     </div>
                 </div>
                 <!-- Agent 6 -->
                 <div class="col-6 col-md-2">
-                    <div class="p-3 rounded-3 border {% if result %}bg-success-subtle border-success text-success{% else %}bg-light text-secondary{% endif %} h-100">
-                        <div class="fs-4 mb-1"><i class="fa-solid fa-feather-pointed"></i></div>
-                        <div class="fw-bold small">6. Writer Agent</div>
-                        <small class="d-block text-muted" style="font-size: 0.75rem;">Prune & Publish Report</small>
+                    <div class="agent-step-card {% if result %}active-step{% endif %}">
+                        <div class="agent-step-num mb-1" style="color: var(--accent-emerald);">PUBLISHER // 06</div>
+                        <div class="fs-4 mb-1 text-success"><i class="fa-solid fa-feather-pointed"></i></div>
+                        <div class="fw-bold small">Writer Agent</div>
+                        <small class="d-block text-muted mt-1" style="font-size: 0.74rem;">
+                            <code>filter_unsupported_claims</code><br>
+                            <code>compile_grounded_report</code>
+                        </small>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Execution Form & Control Panel -->
-    <div class="card shadow-sm border-0 mb-4 rounded-4">
-        <div class="card-body p-4">
+    <!-- 03. Execution Form & Control Panel -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fa-solid fa-terminal text-primary me-2"></i>02 // RESEARCH QUESTION OR LITERATURE INQUIRY DISPATCH
+        </div>
+        <div class="card-body">
             <form action="{{ url_for('academic_team.run_pipeline') }}" method="POST" id="pipelineForm">
-                <label for="question" class="form-label fw-bold fs-6">
-                    <i class="fa-solid fa-circle-question text-primary me-2"></i>Research Question or Literature Inquiry:
+                <label for="question" class="form-label">
+                    ENTER RESEARCH QUESTION FOR MULTI-AGENT SYNTHESIS &amp; FACT-CHECKING:
                 </label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control form-control-lg" id="question" name="question" 
+                    <input type="text" class="form-control form-control-lg" id="question" name="question"
                            placeholder="e.g. Compare centralized orchestration vs decentralized blackboard architectures for autonomous agent systems."
                            value="{{ submitted_question or '' }}" required>
-                    <button class="btn btn-primary px-4 fw-bold" type="submit" id="submitBtn">
-                        <i class="fa-solid fa-bolt me-1"></i> Execute Multi-Agent Pipeline
+                    <button class="btn btn-primary px-4" type="submit" id="submitBtn">
+                        <i class="fa-solid fa-bolt me-1"></i> EXECUTE PIPELINE
                     </button>
                 </div>
 
                 <!-- Preset Questions Pills -->
                 <div class="d-flex flex-wrap gap-2 align-items-center mb-3">
-                    <small class="text-muted fw-semibold me-2"><i class="fa-solid fa-lightbulb text-warning me-1"></i>Preset Inquiries:</small>
+                    <span class="font-mono small fw-bold text-muted me-1">PRESET QUERIES //</span>
                     {% for q in preset_questions %}
-                    <button type="button" class="btn btn-outline-secondary btn-sm rounded-pill text-start preset-btn" data-question="{{ q }}">
-                        {{ q[:45] }}...
+                    <button type="button" class="btn btn-outline-secondary btn-sm text-start preset-btn" data-question="{{ q }}">
+                        0{{ loop.index }}. {{ q[:52] }}...
                     </button>
                     {% endfor %}
                 </div>
 
                 <!-- Advanced Options -->
-                <div class="row g-3 bg-light p-3 rounded-3 border">
+                <div class="row g-3 p-3 border border-dark" style="background-color: var(--bg-surface-alt);">
                     <div class="col-md-6">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" role="switch" id="inject_unsupported_claim" name="inject_unsupported_claim" {% if inject_fake %}checked{% endif %}>
-                            <label class="form-check-label fw-semibold" for="inject_unsupported_claim">
-                                <span class="badge bg-danger me-1">Critic Test Mode</span> Inject Synthetic Hallucination / Unsupported Claim
+                            <label class="form-check-label fw-bold font-mono small" for="inject_unsupported_claim">
+                                <span class="badge bg-danger me-1">CRITIC TEST</span> INJECT SYNTHETIC HALLUCINATION ([P99])
                             </label>
-                            <small class="d-block text-muted">Injects an ungrounded candidate claim to demonstrate that the Fact-Check Critic catches and Writer drops it.</small>
+                            <small class="d-block text-muted mt-1">Injects an ungrounded claim citing [P99] to verify the Critic flags and Writer drops it.</small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" role="switch" id="use_user_papers" name="use_user_papers" {% if use_user_papers %}checked{% endif %}>
-                            <label class="form-check-label fw-semibold" for="use_user_papers">
-                                Include My Personal Saved Papers ({{ user_papers_count }} papers in library)
+                            <label class="form-check-label fw-bold font-mono small" for="use_user_papers">
+                                INCLUDE PERSONAL SAVED CORPUS ({{ user_papers_count }} PAPERS IN DB)
                             </label>
-                            <small class="d-block text-muted">Combines your personal paper library with the CSE476 benchmark corpus.</small>
+                            <small class="d-block text-muted mt-1">Executes grounded RAG over your saved database papers alongside the benchmark corpus.</small>
                         </div>
                     </div>
                 </div>
@@ -150,185 +181,206 @@
         </div>
     </div>
 
-    <!-- Spinner Modal / Loading State -->
-    <div id="loadingIndicator" class="text-center py-5 d-none">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+    <!-- Loading Indicator -->
+    <div id="loadingIndicator" class="card p-5 text-center mb-4 d-none">
+        <div class="spinner-border text-primary mx-auto mb-3" style="width: 2.5rem; height: 2.5rem;" role="status">
             <span class="visually-hidden">Executing agents...</span>
         </div>
-        <h5 class="mt-3 text-secondary fw-bold">Executing Semantic Kernel Multi-Agent Pipeline...</h5>
-        <p class="text-muted small">Query Decomposition &rarr; Corpus RAG &rarr; Thematic Clustering &rarr; Critic Entailment Audit &rarr; Contradiction Scan &rarr; Writer Synthesis</p>
+        <h5 class="font-mono fw-bold mb-1">EXECUTING SEMANTIC KERNEL 6-AGENT PIPELINE...</h5>
+        <p class="font-mono small text-muted mb-0">
+            01. QUERY &rarr; 02. RAG RETRIEVAL &rarr; 03. THEME SUMMARY &rarr; 04. CRITIC AUDIT &rarr; 05. CONTRADICTION SCAN &rarr; 06. WRITER
+        </p>
     </div>
 
     {% if result %}
-    <!-- RESULT DASHBOARD -->
+    <!-- 04. RESULT DASHBOARD -->
     <div id="resultsSection" class="mt-4">
 
         <!-- Metrics Header Row -->
         <div class="row g-3 mb-4">
-            <div class="col-md-3">
-                <div class="card border-0 shadow-sm rounded-4 text-center p-3 bg-white">
-                    <small class="text-muted text-uppercase fw-semibold">Execution Latency</small>
-                    <h3 class="fw-bold text-primary mb-0 mt-1">{{ result.metrics.total_duration_ms }} ms</h3>
-                    <small class="text-success"><i class="fa-solid fa-clock me-1"></i>Completed</small>
+            <div class="col-6 col-md-3">
+                <div class="card p-3 text-center">
+                    <span class="font-mono small text-muted">01 // EXECUTION LATENCY</span>
+                    <h3 class="font-mono fw-bold mt-1 mb-0">{{ result.metrics.total_duration_ms }} ms</h3>
+                    <small class="font-mono text-success">RUN ID: {{ result.run_id }}</small>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card border-0 shadow-sm rounded-4 text-center p-3 bg-white">
-                    <small class="text-muted text-uppercase fw-semibold">Retained Claims</small>
-                    <h3 class="fw-bold text-success mb-0 mt-1">{{ result.metrics.retained_claims }} <span class="fs-6 text-muted">/ {{ result.metrics.candidate_claims }}</span></h3>
-                    <small class="text-success"><i class="fa-solid fa-check-double me-1"></i>100% Grounded</small>
+            <div class="col-6 col-md-3">
+                <div class="card p-3 text-center">
+                    <span class="font-mono small text-muted">02 // RETAINED CLAIMS</span>
+                    <h3 class="font-mono fw-bold text-success mt-1 mb-0">{{ result.metrics.retained_claims }} / {{ result.metrics.candidate_claims }}</h3>
+                    <small class="font-mono text-success">100% PASSAGE GROUNDED</small>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card border-0 shadow-sm rounded-4 text-center p-3 bg-white">
-                    <small class="text-muted text-uppercase fw-semibold">Critic Pruned Claims</small>
-                    <h3 class="fw-bold {% if result.metrics.dropped_claims > 0 %}text-danger{% else %}text-muted{% endif %} mb-0 mt-1">{{ result.metrics.dropped_claims }}</h3>
-                    <small class="text-muted"><i class="fa-solid fa-filter me-1"></i>Unsupported Pruned</small>
+            <div class="col-6 col-md-3">
+                <div class="card p-3 text-center">
+                    <span class="font-mono small text-muted">03 // CRITIC PRUNED CLAIMS</span>
+                    <h3 class="font-mono fw-bold text-danger mt-1 mb-0">{{ result.metrics.dropped_claims }}</h3>
+                    <small class="font-mono text-danger">UNSUPPORTED DROPPED</small>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card border-0 shadow-sm rounded-4 text-center p-3 bg-white">
-                    <small class="text-muted text-uppercase fw-semibold">Identified Debates</small>
-                    <h3 class="fw-bold text-warning mb-0 mt-1">{{ result.metrics.contradictions_identified }}</h3>
-                    <small class="text-muted"><i class="fa-solid fa-scale-balanced me-1"></i>Divergences Found</small>
+            <div class="col-6 col-md-3">
+                <div class="card p-3 text-center">
+                    <span class="font-mono small text-muted">04 // CONTRADICTIONS</span>
+                    <h3 class="font-mono fw-bold text-warning mt-1 mb-0">{{ result.metrics.contradictions_identified }}</h3>
+                    <small class="font-mono text-muted">DUAL POSITIONS MAPPED</small>
                 </div>
             </div>
         </div>
 
         <!-- Tabbed Display Card -->
-        <div class="card shadow-sm border-0 rounded-4">
-            <div class="card-header bg-white border-bottom p-3">
-                <ul class="nav nav-pills card-header-pills" id="resultTabs" role="tablist">
+        <div class="card mb-4">
+            <div class="card-header">
+                <ul class="nav nav-pills" id="resultTabs" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active fw-bold" id="summary-tab" data-bs-toggle="pill" data-bs-target="#tab-summary" type="button" role="tab">
-                            <i class="fa-solid fa-file-lines me-2 text-primary"></i>Final Literature Review
+                        <button class="nav-link active" id="summary-tab" data-bs-toggle="pill" data-bs-target="#tab-summary" type="button" role="tab">
+                            01. LITERATURE SUMMARY
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link fw-bold" id="critic-tab" data-bs-toggle="pill" data-bs-target="#tab-critic" type="button" role="tab">
-                            <i class="fa-solid fa-shield-halved me-2 text-danger"></i>Critic Audit Ledger 
-                            <span class="badge bg-danger ms-1">{{ result.dropped_claims|length }} dropped</span>
+                        <button class="nav-link" id="critic-tab" data-bs-toggle="pill" data-bs-target="#tab-critic" type="button" role="tab">
+                            02. CRITIC AUDIT LEDGER ({{ result.dropped_claims|length }} DROPPED)
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link fw-bold" id="contradiction-tab" data-bs-toggle="pill" data-bs-target="#tab-contradiction" type="button" role="tab">
-                            <i class="fa-solid fa-scale-balanced me-2 text-warning"></i>Contradiction Dossier 
-                            <span class="badge bg-warning text-dark ms-1">{{ result.contradictions.dossiers|length }}</span>
+                        <button class="nav-link" id="contradiction-tab" data-bs-toggle="pill" data-bs-target="#tab-contradiction" type="button" role="tab">
+                            03. CONTRADICTION DOSSIER ({{ result.contradictions.dossiers|length }})
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link fw-bold" id="trace-tab" data-bs-toggle="pill" data-bs-target="#tab-trace" type="button" role="tab">
-                            <i class="fa-solid fa-timeline me-2 text-info"></i>Execution Trace ({{ result.agent_trace|length }} steps)
+                        <button class="nav-link" id="trace-tab" data-bs-toggle="pill" data-bs-target="#tab-trace" type="button" role="tab">
+                            04. MULTI-AGENT TRACE ({{ result.agent_trace|length }} STEPS)
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link fw-bold" id="sources-tab" data-bs-toggle="pill" data-bs-target="#tab-sources" type="button" role="tab">
-                            <i class="fa-solid fa-book-open me-2 text-secondary"></i>Retrieved Passages ({{ result.passages|length }})
+                        <button class="nav-link" id="sources-tab" data-bs-toggle="pill" data-bs-target="#tab-sources" type="button" role="tab">
+                            05. RETRIEVED PASSAGES ({{ result.passages|length }})
                         </button>
                     </li>
                 </ul>
             </div>
 
-            <div class="card-body p-4">
+            <div class="card-body">
                 <div class="tab-content" id="resultTabsContent">
 
                     <!-- TAB 1: SOURCED LITERATURE REVIEW -->
                     <div class="tab-pane fade show active" id="tab-summary" role="tabpanel">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom border-dark">
                             <h4 class="fw-bold mb-0">{{ result.final_report.title }}</h4>
                             <form action="{{ url_for('academic_team.export_markdown') }}" method="POST">
                                 <input type="hidden" name="report_title" value="{{ result.final_report.title }}">
                                 <input type="hidden" name="markdown_content" value="{{ result.final_report.markdown_report }}">
-                                <button type="submit" class="btn btn-outline-primary btn-sm rounded-pill">
-                                    <i class="fa-solid fa-download me-1"></i> Download Markdown Report
+                                <button type="submit" class="btn btn-outline-primary btn-sm">
+                                    <i class="fa-solid fa-download me-1"></i> EXPORT MARKDOWN (.MD)
                                 </button>
                             </form>
                         </div>
 
-                        <div class="alert alert-success bg-success-subtle border-success text-success-emphasis rounded-3">
-                            <i class="fa-solid fa-circle-check me-2"></i><strong>Multi-Agent Grounding Certificate:</strong> Every assertion retained below was audited by the Fact-Check Critic Agent and mapped directly to grounded academic passages. Zero ungrounded assertions permitted.
+                        <div class="alert alert-success mb-4">
+                            <strong>GROUNDING CERTIFICATE //</strong> Every retained claim below was audited by the Fact-Check Critic Agent and mapped to a retrieved corpus passage (<code>[P1]</code>–<code>[P{{ result.passages|length }}]</code>). Unsupported claims have been stripped into the Critic Audit Ledger.
                         </div>
 
-                        <!-- Render Themed Sections -->
+                        <!-- Render Verified Themed Sections -->
                         {% for theme in result.themes %}
-                        <div class="mb-4">
-                            <h5 class="fw-bold text-dark border-bottom pb-2">
-                                <i class="fa-solid fa-bookmark text-primary me-2"></i>{{ theme.theme }}
-                            </h5>
-                            <p class="fs-6 leading-relaxed">{{ theme.content }}</p>
+                        <div class="mb-4 p-3 border border-dark bg-white">
+                            <div class="font-mono small fw-bold text-primary mb-1">THEME // 0{{ loop.index }}</div>
+                            <h5 class="fw-bold border-bottom border-dark pb-2 mb-2">{{ theme.theme }}</h5>
+                            <p class="mb-0" style="font-size: 0.98rem; line-height: 1.7;">{{ theme.content }}</p>
                         </div>
                         {% endfor %}
 
                         <!-- Retained Claims Table -->
                         <div class="mt-4">
-                            <h6 class="fw-bold text-muted text-uppercase mb-2">Verified Assertions Ledger</h6>
+                            <h6 class="font-mono fw-bold text-uppercase mb-2">VERIFIED ASSERTIONS &amp; PER-CLAIM CITATION MAPPING</h6>
                             <div class="table-responsive">
-                                <table class="table table-sm table-hover align-middle border">
-                                    <thead class="table-light">
+                                <table class="table table-bordered align-middle">
+                                    <thead>
                                         <tr>
                                             <th>Claim ID</th>
-                                            <th>Verified Statement</th>
-                                            <th>Citation Tag</th>
+                                            <th>Verified Grounded Statement</th>
+                                            <th>Passage Tag</th>
                                             <th>Source Paper</th>
-                                            <th>Entailment Confidence</th>
+                                            <th>Entailment</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {% for c in result.retained_claims %}
                                         <tr>
-                                            <td><span class="badge bg-secondary">{{ c.claim_id }}</span></td>
+                                            <td class="font-mono fw-bold">{{ c.claim_id }}</td>
                                             <td>{{ c.statement }}</td>
                                             <td><span class="badge bg-primary">{{ c.cited_tag }}</span></td>
-                                            <td><small class="fw-semibold text-muted">{{ c.source_paper or 'Corpus Reference' }}</small></td>
-                                            <td>
-                                                <span class="badge bg-success-subtle text-success border border-success">
-                                                    {{ (c.confidence * 100)|round(0)|int }}% Verified
-                                                </span>
-                                            </td>
+                                            <td class="small fw-semibold">{{ c.source_paper or 'Corpus Reference' }}</td>
+                                            <td><span class="badge bg-success">{{ (c.confidence * 100)|round(0)|int }}% SUPPORTED</span></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
+                        <!-- Dropped Claims Summary Box directly visible in Tab 1 too -->
+                        <div class="mt-4">
+                            <h6 class="font-mono fw-bold text-uppercase text-danger mb-2">CLAIMS DROPPED AS UNSUPPORTED ({{ result.dropped_claims|length }})</h6>
+                            {% if result.dropped_claims %}
+                            <div class="table-responsive">
+                                <table class="table table-bordered align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th>Claim ID</th>
+                                            <th>Dropped Statement</th>
+                                            <th>Cited Tag</th>
+                                            <th>Critic Rejection Reason</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for dc in result.dropped_claims %}
+                                        <tr class="table-danger">
+                                            <td class="font-mono fw-bold">{{ dc.claim_id }}</td>
+                                            <td>{{ dc.statement }}</td>
+                                            <td><span class="badge bg-danger">{{ dc.cited_tag }}</span></td>
+                                            <td class="font-mono small">{{ dc.critic_verdict }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <p class="font-mono small text-muted">Zero unsupported claims detected.</p>
+                            {% endif %}
+                        </div>
                     </div>
 
                     <!-- TAB 2: CRITIC AUDIT LEDGER -->
                     <div class="tab-pane fade" id="tab-critic" role="tabpanel">
-                        <div class="p-3 mb-3 rounded-3 bg-danger-subtle text-danger border border-danger">
-                            <h5 class="fw-bold mb-1"><i class="fa-solid fa-shield-halved me-2"></i>Fact-Check Critic Gate</h5>
-                            <p class="mb-0 small">
-                                The Critic agent independently verifies candidate claims against grounded passages before the Writer compiles the final report. 
-                                Unsubstantiated claims or hallucinations are automatically stripped.
-                            </p>
+                        <div class="alert alert-danger mb-3">
+                            <strong>FACT-CHECK CRITIC GATE //</strong> Audits every candidate claim drafted by the Summary Agent against retrieved passages using `extract_atomic_claims()` and `audit_claim_entailment()`. Any claim lacking grounded textual support is flagged `UNSUPPORTED` and pruned by the Writer Agent.
                         </div>
 
-                        <h6 class="fw-bold text-dark mb-3">All Evaluated Claims & Critic Verdicts</h6>
                         <div class="table-responsive">
                             <table class="table table-bordered align-middle">
-                                <thead class="table-light">
+                                <thead>
                                     <tr>
                                         <th>Claim ID</th>
-                                        <th>Statement</th>
-                                        <th>Cited Tag</th>
-                                        <th>Status</th>
-                                        <th>Critic Audit Reason</th>
+                                        <th>Candidate Statement</th>
+                                        <th>Tag</th>
+                                        <th>Verdict</th>
+                                        <th>Critic Entailment Audit Reason</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for c in result.audited_claims %}
                                     <tr class="{% if c.status == 'UNSUPPORTED' %}table-danger{% else %}table-success{% endif %}">
-                                        <td class="fw-bold font-monospace">{{ c.claim_id }}</td>
+                                        <td class="font-mono fw-bold">{{ c.claim_id }}</td>
                                         <td>{{ c.statement }}</td>
-                                        <td><span class="badge bg-dark">{{ c.cited_tag }}</span></td>
+                                        <td><span class="badge bg-secondary">{{ c.cited_tag }}</span></td>
                                         <td>
                                             {% if c.status == 'SUPPORTED' %}
-                                            <span class="badge bg-success"><i class="fa-solid fa-check me-1"></i>SUPPORTED</span>
+                                            <span class="badge bg-success">SUPPORTED</span>
                                             {% else %}
-                                            <span class="badge bg-danger"><i class="fa-solid fa-xmark me-1"></i>UNSUPPORTED</span>
+                                            <span class="badge bg-danger">UNSUPPORTED</span>
                                             {% endif %}
                                         </td>
-                                        <td><small class="fw-semibold">{{ c.critic_verdict }}</small></td>
+                                        <td class="font-mono small">{{ c.critic_verdict }}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -338,93 +390,93 @@
 
                     <!-- TAB 3: CONTRADICTION DOSSIER -->
                     <div class="tab-pane fade" id="tab-contradiction" role="tabpanel">
-                        <div class="p-3 mb-3 rounded-3 bg-warning-subtle text-dark border border-warning">
-                            <h5 class="fw-bold mb-1"><i class="fa-solid fa-scale-balanced me-2"></i>Contradiction Agent (Group of Three Requirement)</h5>
-                            <p class="mb-0 small">
-                                Reports where independent academic sources disagree, presenting both positions side-by-side rather than arbitrarily endorsing one.
-                            </p>
+                        <div class="alert alert-warning mb-3">
+                            <strong>CONTRADICTION AGENT (GROUP OF 3 ADD-ON) //</strong> Detects where two sources disagree (`detect_cross_source_divergence()`) and presents both opposing positions (`synthesize_contradiction_dossier()`).
                         </div>
 
                         {% if result.contradictions.has_contradictions %}
                             {% for d in result.contradictions.dossiers %}
-                            <div class="card border mb-3 rounded-3 shadow-sm">
-                                <div class="card-header bg-light fw-bold">
-                                    <i class="fa-solid fa-arrows-split-up-and-left text-danger me-2"></i>{{ d.topic }}
-                                    <span class="badge bg-info text-dark ms-2">{{ d.divergence_type }}</span>
+                            <div class="card mb-3">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <span>DEBATE // {{ d.topic }}</span>
+                                    <span class="badge bg-warning">{{ d.divergence_type }}</span>
                                 </div>
                                 <div class="card-body">
                                     <div class="row g-3">
-                                        <div class="col-md-6 border-end">
-                                            <div class="p-3 bg-light rounded-3 h-100">
-                                                <h6 class="fw-bold text-primary mb-1"><i class="fa-solid fa-user-pen me-1"></i>Position A: {{ d.position_a.source }}</h6>
-                                                <small class="text-muted d-block mb-2"><em>{{ d.position_a.title }}</em></small>
+                                        <div class="col-md-6">
+                                            <div class="p-3 border border-dark h-100 bg-white">
+                                                <div class="font-mono small fw-bold text-primary mb-1">POSITION A // {{ d.position_a.source }}</div>
+                                                <div class="small fw-semibold text-muted mb-2"><em>{{ d.position_a.title }}</em></div>
                                                 <p class="small mb-0">{{ d.position_a.argument }}</p>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
-                                            <div class="p-3 bg-light rounded-3 h-100">
-                                                <h6 class="fw-bold text-danger mb-1"><i class="fa-solid fa-user-pen me-1"></i>Position B: {{ d.position_b.source }}</h6>
-                                                <small class="text-muted d-block mb-2"><em>{{ d.position_b.title }}</em></small>
+                                            <div class="p-3 border border-dark h-100 bg-white">
+                                                <div class="font-mono small fw-bold text-danger mb-1">POSITION B // {{ d.position_b.source }}</div>
+                                                <div class="small fw-semibold text-muted mb-2"><em>{{ d.position_b.title }}</em></div>
                                                 <p class="small mb-0">{{ d.position_b.argument }}</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mt-3 p-2 bg-white border rounded text-muted small">
-                                        <strong>Architectural Significance:</strong> {{ d.significance }}
+                                    <div class="mt-3 p-2 border border-dark font-mono small" style="background-color: var(--bg-surface-alt);">
+                                        <strong>SIGNIFICANCE:</strong> {{ d.significance }}
                                     </div>
                                 </div>
                             </div>
                             {% endfor %}
                         {% else %}
-                            <div class="alert alert-secondary text-center py-4">
-                                <i class="fa-solid fa-check-circle fs-3 mb-2 d-block text-success"></i>
-                                No direct contradictions or conflicting claims detected for this inquiry topic across retrieved literature.
+                            <div class="p-4 text-center border border-dark bg-white font-mono">
+                                NO CROSS-SOURCE CONTRADICTIONS DETECTED FOR THIS QUERY.
                             </div>
                         {% endif %}
                     </div>
 
                     <!-- TAB 4: EXECUTION TRACE -->
                     <div class="tab-pane fade" id="tab-trace" role="tabpanel">
-                        <h6 class="fw-bold text-dark mb-3"><i class="fa-solid fa-terminal text-info me-2"></i>Multi-Agent Execution Timeline & Trace Log</h6>
-                        <div class="timeline">
-                            {% for step in result.agent_trace %}
-                            <div class="card border mb-2 rounded-3 shadow-xs">
-                                <div class="card-body p-3">
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <span class="fw-bold text-primary">
-                                            <i class="fa-solid fa-robot me-1"></i>{{ step.agent }}
-                                        </span>
-                                        <span class="badge bg-secondary font-monospace">{{ step.duration_ms }} ms</span>
-                                    </div>
-                                    <div class="d-flex align-items-center gap-2 mb-2">
-                                        <span class="badge bg-dark-subtle text-dark border">Tool: {{ step.tool }}()</span>
-                                        <small class="text-muted">{{ step.tool_type }}</small>
-                                        <small class="text-muted ms-auto font-monospace">{{ step.timestamp }}</small>
-                                    </div>
-                                    <div class="bg-light p-2 rounded small font-monospace overflow-auto" style="max-height: 120px;">
-                                        <strong>Output:</strong> {{ step.output }}
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
+                        <h6 class="font-mono fw-bold mb-3">STEP-BY-STEP MULTI-AGENT TOOL INVOCATION TRACE</h6>
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Step</th>
+                                        <th>Agent Module</th>
+                                        <th>Plain Python Tool Invoked</th>
+                                        <th>Output Summary</th>
+                                        <th>Latency</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for step in result.agent_trace %}
+                                    <tr>
+                                        <td class="font-mono fw-bold">0{{ loop.index }}</td>
+                                        <td class="font-mono fw-bold text-primary">{{ step.agent }}</td>
+                                        <td><code>{{ step.tool }}()</code></td>
+                                        <td class="font-mono small">{{ step.output }}</td>
+                                        <td class="font-mono">{{ step.duration_ms }} ms</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
                     <!-- TAB 5: RETRIEVED PASSAGES -->
                     <div class="tab-pane fade" id="tab-sources" role="tabpanel">
-                        <h6 class="fw-bold text-dark mb-3"><i class="fa-solid fa-book-bookmark text-primary me-2"></i>Grounded Passages in Agent Memory</h6>
+                        <h6 class="font-mono fw-bold mb-3">GROUNDED CORPUS PASSAGES IN SHARED MEMORY</h6>
                         <div class="row g-3">
                             {% for p in result.passages %}
                             <div class="col-md-6">
-                                <div class="card border rounded-3 h-100 shadow-xs">
-                                    <div class="card-header bg-light d-flex justify-content-between align-items-center py-2">
-                                        <span class="badge bg-primary fw-bold">{{ p.citation_tag }}</span>
-                                        <small class="text-muted font-monospace">Relevance: {{ (p.relevance_score * 100)|round(1) }}%</small>
+                                <div class="card h-100">
+                                    <div class="card-header d-flex justify-content-between align-items-center">
+                                        <span class="badge bg-primary">{{ p.citation_tag }}</span>
+                                        <span class="font-mono small">SIMILARITY: {{ (p.relevance_score * 100)|round(1) }}%</span>
                                     </div>
-                                    <div class="card-body p-3">
-                                        <h6 class="fw-bold text-dark mb-1">{{ p.paper_title }}</h6>
-                                        <small class="text-muted d-block mb-2">{{ p.authors }} ({{ p.year }}) &bull; {{ p.journal }} &bull; <em>{{ p.section }}</em></small>
-                                        <p class="small text-secondary mb-0 bg-light p-2 rounded">{{ p.text }}</p>
+                                    <div class="card-body">
+                                        <h6 class="fw-bold mb-1">{{ p.paper_title }}</h6>
+                                        <div class="font-mono small text-muted mb-2">
+                                            {{ p.authors }} ({{ p.year }}) &bull; {{ p.section }} &bull; DOI: {{ p.doi }}
+                                        </div>
+                                        <p class="small mb-0 p-2 border border-dark bg-white">{{ p.text }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -438,47 +490,43 @@
     </div>
     {% endif %}
 
-    <!-- Append-Only Run Log History (Rubric Requirement) -->
-    <div class="card shadow-sm border-0 mt-4 rounded-4">
-        <div class="card-header bg-white border-bottom p-3 d-flex justify-content-between align-items-center">
-            <h6 class="mb-0 fw-bold text-dark">
-                <i class="fa-solid fa-clock-rotate-left text-primary me-2"></i>Append-Only Run Log (<code class="small">run_log.jsonl</code>)
-            </h6>
-            <span class="badge bg-success-subtle text-success border border-success">Audit Trail Active</span>
+    <!-- 05. Append-Only Run Log History -->
+    <div class="card mt-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span><i class="fa-solid fa-clock-rotate-left text-primary me-2"></i>03 // APPEND-ONLY RUN LOG (<code>run_log.jsonl</code>)</span>
+            <span class="badge bg-success">IMMUTABLE AUDIT LOG ACTIVE</span>
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover align-middle mb-0">
-                    <thead class="table-light">
+                    <thead>
                         <tr>
                             <th>Run ID</th>
-                            <th>Timestamp</th>
-                            <th>Inquiry Question</th>
-                            <th>Retained / Dropped</th>
-                            <th>Debates</th>
+                            <th>UTC Timestamp</th>
+                            <th>Research Question</th>
+                            <th>Claims (Kept / Dropped)</th>
+                            <th>Contradictions</th>
                             <th>Duration</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for log in recent_logs %}
                         <tr>
-                            <td class="font-monospace fw-bold small text-primary">{{ log.run_id }}</td>
-                            <td><small class="text-muted">{{ log.timestamp[:19] }}</small></td>
-                            <td><span class="text-dark small">{{ log.question[:70] }}...</span></td>
+                            <td class="font-mono fw-bold text-primary">{{ log.run_id }}</td>
+                            <td class="font-mono small text-muted">{{ log.timestamp[:19] }}</td>
+                            <td class="small">{{ log.question[:75] }}{% if log.question|length > 75 %}...{% endif %}</td>
                             <td>
-                                <span class="badge bg-success">{{ log.retained_claims_count }} kept</span>
+                                <span class="badge bg-success">{{ log.retained_claims_count }} KEPT</span>
                                 {% if log.dropped_claims_count > 0 %}
-                                <span class="badge bg-danger">{{ log.dropped_claims_count }} dropped</span>
+                                <span class="badge bg-danger">{{ log.dropped_claims_count }} DROPPED</span>
                                 {% endif %}
                             </td>
-                            <td>
-                                <span class="badge bg-warning text-dark">{{ log.contradictions_count }}</span>
-                            </td>
-                            <td><span class="badge bg-light text-dark border">{{ log.duration_ms }} ms</span></td>
+                            <td><span class="badge bg-warning">{{ log.contradictions_count }}</span></td>
+                            <td class="font-mono small">{{ log.duration_ms }} ms</td>
                         </tr>
                         {% else %}
                         <tr>
-                            <td colspan="6" class="text-center py-3 text-muted">No runs logged yet. Execute an inquiry above.</td>
+                            <td colspan="6" class="text-center py-4 font-mono text-muted">NO RUNS RECORDED YET.</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -491,7 +539,6 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Preset pill click handler
     document.querySelectorAll('.preset-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             document.getElementById('question').value = this.getAttribute('data-question');
@@ -499,14 +546,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Form submit loading spinner toggle
     const form = document.getElementById('pipelineForm');
     const submitBtn = document.getElementById('submitBtn');
     const loadingIndicator = document.getElementById('loadingIndicator');
 
     form.addEventListener('submit', function() {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Running Agents...';
+        submitBtn.innerHTML = 'RUNNING PIPELINE...';
         loadingIndicator.classList.remove('d-none');
         loadingIndicator.scrollIntoView({ behavior: 'smooth' });
     });

@@ -3,79 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Agentic AI | Academic Research Assistant Team (CSE476){% endblock %}</title>
+    <title>{% block title %}AGENTIC.DAT // Academic Research Assistant Team (CSE476){% endblock %}</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- FontAwesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <!-- Technical Grid Design System CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}?v=2">
+    {% block extra_css %}{% endblock %}
 </head>
-<body class="bg-light d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm py-2">
-        <div class="container-fluid px-md-4">
-            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{{ url_for('academic_team.index') }}">
-                <span class="badge bg-primary rounded-circle p-2"><i class="fa-solid fa-brain"></i></span>
-                <span>Agentic AI <span class="badge bg-info-subtle text-info border border-info ms-1 small fw-normal">CSE476</span></span>
+    <!-- Top Technical Navigation Bar (Inspired by RYAN.DAT) -->
+    <header class="tech-navbar">
+        <div class="container-fluid d-flex flex-wrap justify-content-between align-items-center gap-3">
+            <a class="tech-brand" href="{{ url_for('academic_team.index') }}">
+                <span>AGENTIC.DAT</span>
+                <span class="slash-sep">//</span>
+                <span>GROUP 16</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarMain">
-                {% if current_user.is_authenticated %}
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint and 'academic_team' in request.endpoint %}active fw-bold text-primary{% endif %}" href="{{ url_for('academic_team.index') }}">
-                            <i class="fa-solid fa-network-wired me-1 text-primary"></i> Multi-Agent Team (Group 16)
+
+            {% if current_user.is_authenticated %}
+            <nav class="d-flex flex-wrap align-items-center gap-4">
+                <ul class="tech-nav-list">
+                    <li>
+                        <a class="tech-nav-link {% if request.endpoint and 'academic_team' in request.endpoint %}active{% endif %}" href="{{ url_for('academic_team.index') }}">
+                            01. PIPELINE
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint and 'papers' in request.endpoint %}active fw-bold{% endif %}" href="{{ url_for('papers.index') }}">
-                            <i class="fa-solid fa-book-bookmark me-1 text-info"></i> Research Corpus
+                    <li>
+                        <a class="tech-nav-link {% if request.endpoint and 'papers' in request.endpoint %}active{% endif %}" href="{{ url_for('papers.index') }}">
+                            02. CORPUS
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint and 'search' in request.endpoint %}active fw-bold{% endif %}" href="{{ url_for('search.crossref') }}">
-                            <i class="fa-solid fa-magnifying-glass me-1 text-success"></i> Search Crossref
+                    <li>
+                        <a class="tech-nav-link {% if request.endpoint and 'search' in request.endpoint %}active{% endif %}" href="{{ url_for('search.crossref') }}">
+                            03. CROSSREF
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.endpoint and 'viva' in request.endpoint %}active fw-bold{% endif %}" href="{{ url_for('viva.index') }}">
-                            <i class="fa-solid fa-graduation-cap me-1 text-warning"></i> Viva Prep
+                    <li>
+                        <a class="tech-nav-link {% if request.endpoint and 'viva' in request.endpoint %}active{% endif %}" href="{{ url_for('viva.index') }}">
+                            04. VIVA PREP
                         </a>
                     </li>
                 </ul>
-                <div class="d-flex align-items-center gap-3">
-                    <span class="badge bg-primary-subtle text-primary border border-primary px-3 py-2 rounded-pill">
-                        <i class="fa-solid fa-user me-1"></i>{{ current_user.username }}
+
+                <div class="d-flex align-items-center gap-2 ms-lg-3">
+                    <span class="tech-user-pill">
+                        <i class="fa-regular fa-user me-1"></i>{{ current_user.username }}
                     </span>
-                    <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-danger btn-sm rounded-pill px-3">
-                        <i class="fa-solid fa-right-from-bracket me-1"></i> Logout
+                    <a href="{{ url_for('auth.logout') }}" class="tech-logout-btn">
+                        LOGOUT
                     </a>
                 </div>
-                {% else %}
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item me-2">
-                        <a href="{{ url_for('auth.login') }}" class="btn btn-outline-primary btn-sm px-3">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-sm px-3">Register</a>
-                    </li>
-                </ul>
-                {% endif %}
-            </div>
+            </nav>
+            {% else %}
+            <nav class="d-flex align-items-center gap-2">
+                <a href="{{ url_for('auth.login') }}" class="btn btn-outline-secondary btn-sm">01. LOGIN</a>
+                <a href="{{ url_for('auth.register') }}" class="btn btn-primary btn-sm">02. REGISTER</a>
+            </nav>
+            {% endif %}
         </div>
-    </nav>
+    </header>
 
     <!-- Flash Messages -->
-    <div class="container mt-3">
+    <div class="container-fluid px-md-5 mt-3">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
-                    <div class="alert alert-{{ category if category != 'error' else 'danger' }} alert-dismissible fade show shadow-sm" role="alert">
-                        {{ message }}
+                    <div class="alert alert-{{ category if category != 'error' else 'danger' }} alert-dismissible fade show mb-2" role="alert">
+                        <strong>SYS // NOTICE:</strong> {{ message }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 {% endfor %}
@@ -84,19 +81,33 @@
     </div>
 
     <!-- Main Content Area -->
-    <main class="flex-grow-1">
+    <main class="flex-grow-1 container-fluid px-md-5 py-3">
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-white border-top py-3 mt-5 text-center text-muted small">
-        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-            <span>CSE476: Agentic AI and Intelligent Automation &bull; Task 2 (Group 16)</span>
-            <span>Pipeline with RAG and Critic Architecture &bull; Microsoft Semantic Kernel</span>
+    <!-- Technical Footer with Live Coordinates -->
+    <footer class="tech-footer">
+        <div class="container-fluid d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+            <div>
+                <span>SYS // CSE476 TASK 2 &bull; PIPELINE + RAG + CRITIC ARCHITECTURE &bull; MICROSOFT SEMANTIC KERNEL</span>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <span class="d-none d-sm-inline">AGENTS: 06 // TOOLS: 12 PLAIN PYTHON</span>
+                <span class="coord-readout" id="coordReadout">x: 1180, y: 618</span>
+            </div>
         </div>
     </footer>
 
     <!-- Bootstrap 5 Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('mousemove', function(e) {
+            const el = document.getElementById('coordReadout');
+            if (el) {
+                el.textContent = 'x: ' + e.clientX + ', y: ' + e.clientY;
+            }
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
 </body>
 </html>
