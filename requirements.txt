@@ -1,0 +1,17 @@
+# Agentic AI & Intelligent Automation (CSE476 - Group 16)
+Flask>=3.1.0
+Flask-SQLAlchemy>=3.1.1
+Flask-Login>=0.6.3
+Flask-Migrate>=4.1.0
+SQLAlchemy>=2.0.0
+Werkzeug>=3.1.0
+semantic-kernel>=1.44.0
+groq>=0.9.0
+openai>=1.50.0
+scikit-learn>=1.3.0
+numpy>=1.24.0
+requests>=2.31.0
+python-dotenv>=1.0.0
+pypdf>=4.0.0
+pytest>=8.0.0
+

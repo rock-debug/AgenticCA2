@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Crossref - Journal & Patent Tracker{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+    <h2 class="fw-bold mb-1"><i class="fa-solid fa-globe text-primary me-2"></i>Search Crossref Repository</h2>
+    <p class="text-muted">Discover millions of academic journal articles and import them directly into your personal research library.</p>
+</div>
+
+<div class="card mb-4 border-0 bg-secondary shadow-sm">
+    <div class="card-body p-4">
+        <form method="GET" action="{{ url_for('search.crossref') }}" class="row g-3">
+            <div class="col-md-10">
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text bg-dark border-dark text-muted"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="form-control bg-dark text-light border-dark" name="q" value="{{ query }}" placeholder="Search paper title, DOI, author, or research topic..." required autofocus>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary btn-lg w-100"><i class="fa-solid fa-search me-1"></i>Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% if query %}
+<h5 class="fw-bold mb-3"><i class="fa-solid fa-list-check me-2 text-info"></i>Search Results for "{{ query }}"</h5>
+{% if results %}
+<div class="row g-4">
+    {% for paper in results %}
+    <div class="col-md-6">
+        <div class="card shadow-sm h-100 border-0 card-hover">
+            <div class="card-body d-flex flex-column justify-content-between p-4">
+                <div>
+                    <h5 class="fw-bold text-light mb-2">{{ paper.title }}</h5>
+                    <p class="text-primary mb-2 fs-7"><i class="fa-solid fa-users me-1"></i>{{ paper.authors or 'Authors unavailable' }}</p>
+                    <div class="mb-3 fs-7">
+                        {% if paper.journal %}
+                        <span class="text-muted me-2"><i class="fa-solid fa-journal-whills me-1"></i>{{ paper.journal }}</span>
+                        {% endif %}
+                        {% if paper.publication_year %}
+                        <span class="badge bg-secondary">{{ paper.publication_year }}</span>
+                        {% endif %}
+                    </div>
+
+                    {% if paper.abstract %}
+                    <p class="text-muted fs-7 lh-base text-truncate-3 mb-3">
+                        {{ paper.abstract[:280] }}...
+                    </p>
+                    {% endif %}
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center pt-3 border-top border-dark-subtle">
+                    {% if paper.doi %}
+                    <span class="badge bg-dark border text-muted fs-8">DOI: {{ paper.doi[:18] }}...</span>
+                    {% else %}
+                    <span></span>
+                    {% endif %}
+
+                    <form method="POST" action="{{ url_for('search.save_paper') }}">
+                        <input type="hidden" name="title" value="{{ paper.title }}">
+                        <input type="hidden" name="authors" value="{{ paper.authors }}">
+                        <input type="hidden" name="journal" value="{{ paper.journal }}">
+                        <input type="hidden" name="publication_year" value="{{ paper.publication_year or '' }}">
+                        <input type="hidden" name="doi" value="{{ paper.doi }}">
+                        <input type="hidden" name="url" value="{{ paper.url }}">
+                        <input type="hidden" name="abstract" value="{{ paper.abstract }}">
+                        <input type="hidden" name="keywords" value="{{ paper.keywords }}">
+                        
+                        <button type="submit" class="btn btn-outline-success btn-sm px-3">
+                            <i class="fa-solid fa-bookmark me-1"></i>Save to Library
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="text-center py-5">
+    <i class="fa-solid fa-circle-exclamation fs-1 text-muted opacity-50 mb-3"></i>
+    <h5>No Crossref Results Found</h5>
+    <p class="text-muted">No records matched your search query. Try broader keywords.</p>
+</div>
+{% endif %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Research Paper - Journal & Patent Tracker{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold mb-0"><i class="fa-solid fa-plus-circle text-primary me-2"></i>Add Research Paper</h2>
+            <a href="{{ url_for('papers.index') }}" class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-arrow-left me-1"></i>Back to Papers</a>
+        </div>
+
+        <!-- DOI Quick Fetch Card -->
+        <div class="card mb-4 bg-secondary border-info shadow-sm">
+            <div class="card-body py-3">
+                <label for="doiFetchInput" class="form-label fw-bold text-info"><i class="fa-solid fa-bolt me-1"></i>Auto-Fetch Metadata by DOI</label>
+                <div class="input-group">
+                    <input type="text" class="form-control bg-dark text-light border-dark" id="doiFetchInput" placeholder="Paste DOI here (e.g. 10.1038/s41567-023-00001-x or https://doi.org/...)">
+                    <button class="btn btn-info" type="button" id="btnFetchDoi" onclick="autoFetchDoiMetadata()">
+                        <i class="fa-solid fa-cloud-arrow-down me-1"></i>Fetch Metadata
+                    </button>
+                </div>
+                <div class="form-text text-muted">Entering a valid DOI will automatically fill in title, authors, journal, year, and abstract below.</div>
+            </div>
+        </div>
+
+        <div class="card shadow-lg border-0 rounded-3">
+            <div class="card-body p-4">
+                <form method="POST" action="{{ url_for('papers.create') }}">
+                    <div class="mb-3">
+                        <label for="title" class="form-label fw-bold">Paper Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="e.g. Deep Residual Learning for Image Recognition" required>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label for="authors" class="form-label">Authors</label>
+                            <input type="text" class="form-control" id="authors" name="authors" placeholder="e.g. He, K., Zhang, X., Ren, S., Sun, J.">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="journal" class="form-label">Journal / Conference</label>
+                            <input type="text" class="form-control" id="journal" name="journal" placeholder="e.g. IEEE Conference on Computer Vision and Pattern Recognition">
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-4">
+                            <label for="publication_year" class="form-label">Publication Year</label>
+                            <input type="number" class="form-control" id="publication_year" name="publication_year" placeholder="e.g. 2016" min="1800" max="2100">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="doi" class="form-label">DOI</label>
+                            <input type="text" class="form-control" id="doi" name="doi" placeholder="e.g. 10.1109/CVPR.2016.90">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="status" class="form-label">Reading Status</label>
+                            <select class="form-select" id="status" name="status">
+                                <option value="Unread" selected>Unread</option>
+                                <option value="Reading">Reading</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="url" class="form-label">URL Link</label>
+                        <input type="url" class="form-control" id="url" name="url" placeholder="https://arxiv.org/abs/1512.03385">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="keywords" class="form-label">Keywords / Tags</label>
+                        <input type="text" class="form-control" id="keywords" name="keywords" placeholder="e.g. Computer Vision, Deep Learning, ResNet">
+                        <div class="form-text text-muted">Separate multiple keywords with commas.</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="abstract" class="form-label">Abstract</label>
+                        <textarea class="form-control" id="abstract" name="abstract" rows="5" placeholder="Paste full paper abstract here..."></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <a href="{{ url_for('papers.index') }}" class="btn btn-outline-secondary px-4">Cancel</a>
+                        <button type="submit" class="btn btn-primary px-4"><i class="fa-solid fa-save me-1"></i>Save Paper</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function autoFetchDoiMetadata() {
+    const doiVal = document.getElementById('doiFetchInput').value.trim();
+    if (!doiVal) {
+        alert('Please enter a valid DOI string.');
+        return;
+    }
+    
+    const btn = document.getElementById('btnFetchDoi');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Fetching...';
+    
+    fetch('/papers/fetch_doi', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ doi: doiVal })
+    })
+    .then(res => res.json())
+    .then(data => {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-down me-1"></i>Fetch Metadata';
+        
+        if (data.success && data.metadata) {
+            const m = data.metadata;
+            if (m.title) document.getElementById('title').value = m.title;
+            if (m.authors) document.getElementById('authors').value = m.authors;
+            if (m.journal) document.getElementById('journal').value = m.journal;
+            if (m.publication_year) document.getElementById('publication_year').value = m.publication_year;
+            if (m.doi) document.getElementById('doi').value = m.doi;
+            if (m.url) document.getElementById('url').value = m.url;
+            if (m.abstract) document.getElementById('abstract').value = m.abstract;
+            if (m.keywords) document.getElementById('keywords').value = m.keywords;
+            alert('Metadata fetched successfully!');
+        } else {
+            alert(data.error || 'Could not fetch metadata for this DOI.');
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-down me-1"></i>Fetch Metadata';
+        alert('Error fetching DOI metadata.');
+    });
+}
+</script>
+{% endblock %}

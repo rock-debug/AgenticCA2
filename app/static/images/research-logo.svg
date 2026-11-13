@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00aaff"/>
+      <stop offset="100%" stop-color="#0077cc"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Base Circle -->
+  <circle cx="100" cy="100" r="90" fill="#021b33" stroke="url(#logoGradient)" stroke-width="2"/>
+  
+  <!-- Abstract Book Shape -->
+  <g filter="url(#glow)">
+    <path d="M 65 60 L 135 60 C 140 60 145 65 145 70 L 145 140 C 145 145 140 150 135 150 L 65 150 C 60 150 55 145 55 140 L 55 70 C 55 65 60 60 65 60 Z" 
+         fill="none" stroke="url(#logoGradient)" stroke-width="3"/>
+    
+    <!-- Book Pages -->
+    <path d="M 65 60 L 65 150" fill="none" stroke="url(#logoGradient)" stroke-width="2"/>
+    <path d="M 100 60 L 100 150" fill="none" stroke="#0066cc" stroke-width="1.5" opacity="0.6"/>
+    
+    <!-- Document Lines -->
+    <path d="M 75 80 L 125 80" fill="none" stroke="#0066cc" stroke-width="1.5" opacity="0.7"/>
+    <path d="M 75 95 L 125 95" fill="none" stroke="#0066cc" stroke-width="1.5" opacity="0.7"/>
+    <path d="M 75 110 L 125 110" fill="none" stroke="#0066cc" stroke-width="1.5" opacity="0.7"/>
+    <path d="M 75 125 L 115 125" fill="none" stroke="#0066cc" stroke-width="1.5" opacity="0.7"/>
+    
+    <!-- Magnifying Glass -->
+    <circle cx="120" cy="70" r="25" fill="none" stroke="url(#logoGradient)" stroke-width="3" opacity="0.8"/>
+    <line x1="138" y1="88" x2="150" y2="100" stroke="url(#logoGradient)" stroke-width="3" opacity="0.8"/>
+    
+    <!-- Decorative Binary/Data Elements -->
+    <text x="70" y="140" fill="#00aaff" font-family="monospace" font-size="6" opacity="0.8">10110</text>
+    <text x="90" y="140" fill="#00aaff" font-family="monospace" font-size="6" opacity="0.8">01001</text>
+    <text x="110" y="140" fill="#00aaff" font-family="monospace" font-size="6" opacity="0.8">11010</text>
+  </g>
+  
+  <!-- Orbit Elements -->
+  <g opacity="0.8">
+    <ellipse cx="100" cy="100" rx="85" ry="30" fill="none" stroke="#0077cc" stroke-width="1" transform="rotate(45 100 100)"/>
+    <circle cx="70" cy="70" r="3" fill="#00aaff"/>
+    <circle cx="140" cy="130" r="3" fill="#00aaff"/>
+  </g>
+</svg>

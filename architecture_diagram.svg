@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" width="100%" height="100%" font-family="Segoe UI, Inter, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#dc2626"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="620" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+
+  <!-- Header -->
+  <text x="550" y="38" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">
+    Pipeline with RAG and a Critic Architecture (Microsoft Semantic Kernel)
+  </text>
+  <text x="550" y="60" text-anchor="middle" font-size="13" fill="#475569">
+    6 Modular Agents • 2 Plain Python Tools per Agent • Grounded Corpus RAG • Critic Entailment Gate • Group-of-3 Contradiction Add-On
+  </text>
+
+  <!-- Shared State / RAG Memory Banner -->
+  <rect x="40" y="80" width="1020" height="62" rx="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="5,4"/>
+  <text x="550" y="104" text-anchor="middle" font-size="14" font-weight="700" fill="#0369a1">
+    Shared Pipeline State &amp; Grounded Paper Corpus Memory (app/agents/corpus.py)
+  </text>
+  <text x="550" y="126" text-anchor="middle" font-size="12" fill="#0c4a6e">
+    Holds: sub_queries • expanded_queries • ranked_passages [P1..Pn] • draft_themes • audited_claims • contradictions • retained_claims &amp; dropped_claims
+  </text>
+
+  <!-- Step 1: Query Agent -->
+  <rect x="40" y="185" width="210" height="125" rx="10" fill="#ffffff" stroke="#2563eb" stroke-width="2"/>
+  <rect x="40" y="185" width="210" height="30" rx="10" fill="#2563eb"/>
+  <text x="145" y="205" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">1. Query Agent</text>
+  <text x="145" y="228" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">app/agents/query_agent.py</text>
+  <text x="52" y="252" font-size="11" fill="#334155">• decompose_research_question()</text>
+  <text x="52" y="272" font-size="11" fill="#334155">• expand_academic_lexicon()</text>
+  <text x="52" y="296" font-size="10.5" fill="#64748b">Out: Sub-queries &amp; synonyms</text>
+
+  <!-- Arrow 1 -> 2 -->
+  <line x1="250" y1="247" x2="295" y2="247" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 2: Retrieval Agent -->
+  <rect x="300" y="185" width="220" height="125" rx="10" fill="#ffffff" stroke="#0891b2" stroke-width="2"/>
+  <rect x="300" y="185" width="220" height="30" rx="10" fill="#0891b2"/>
+  <text x="410" y="205" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">2. Retrieval Agent (RAG)</text>
+  <text x="410" y="228" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">app/agents/retrieval_agent.py</text>
+  <text x="312" y="252" font-size="11" fill="#334155">• search_paper_passages()</text>
+  <text x="312" y="272" font-size="11" fill="#334155">• filter_and_rank_passages()</text>
+  <text x="312" y="296" font-size="10.5" fill="#64748b">Out: Grounded passages [P1..Pn]</text>
+
+  <!-- Arrow 2 -> 3 -->
+  <line x1="520" y1="247" x2="565" y2="247" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 3: Summary Agent -->
+  <rect x="570" y="185" width="220" height="125" rx="10" fill="#ffffff" stroke="#4f46e5" stroke-width="2"/>
+  <rect x="570" y="185" width="220" height="30" rx="10" fill="#4f46e5"/>
+  <text x="680" y="205" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">3. Summary Agent</text>
+  <text x="680" y="228" text-anchor="middle" font-size="11" font-weight="600" fill="#1e293b">app/agents/summary_agent.py</text>
+  <text x="582" y="252" font-size="11" fill="#334155">• cluster_passages_by_themes()</text>
+  <text x="582" y="272" font-size="11" fill="#334155">• draft_themed_synthesis()</text>
+  <text x="582" y="296" font-size="10.5" fill="#64748b">Out: Themed draft &amp; claims</text>
+
+  <!-- Arrow 3 -> 4 -->
+  <line x1="790" y1="247" x2="835" y2="247" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 4: Fact-Check Agent (Critic) -->
+  <rect x="840" y="185" width="220" height="125" rx="10" fill="#fff1f2" stroke="#e11d48" stroke-width="2.5"/>
+  <rect x="840" y="185" width="220" height="30" rx="10" fill="#e11d48"/>
+  <text x="950" y="205" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">4. Fact-Check Agent (Critic)</text>
+  <text x="950" y="228" text-anchor="middle" font-size="11" font-weight="600" fill="#881337">app/agents/fact_check_agent.py</text>
+  <text x="852" y="252" font-size="11" fill="#334155">• extract_atomic_claims()</text>
+  <text x="852" y="272" font-size="11" fill="#334155">• audit_claim_entailment()</text>
+  <text x="852" y="296" font-size="10.5" fill="#be123c">Gate: SUPPORTED vs UNSUPPORTED</text>
+
+  <!-- Arrow 4 -> 5 -->
+  <path d="M 950 310 L 950 345 L 410 345 L 410 375" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <text x="680" y="338" text-anchor="middle" font-size="11" font-weight="600" fill="#15803d">Audited Claims + Grounded Passages [P1..Pn]</text>
+
+  <!-- Step 5: Contradiction Agent (Group of 3) -->
+  <rect x="290" y="380" width="240" height="125" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
+  <rect x="290" y="380" width="240" height="30" rx="10" fill="#d97706"/>
+  <text x="410" y="400" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">5. Contradiction Agent (Grp of 3)</text>
+  <text x="410" y="423" text-anchor="middle" font-size="11" font-weight="600" fill="#78350f">app/agents/contradiction_agent.py</text>
+  <text x="302" y="447" font-size="11" fill="#334155">• detect_cross_source_divergence()</text>
+  <text x="302" y="467" font-size="11" fill="#334155">• synthesize_contradiction_dossier()</text>
+  <text x="302" y="491" font-size="10.5" fill="#92400e">Out: Position A vs. Position B</text>
+
+  <!-- Arrow 5 -> 6 -->
+  <line x1="530" y1="442" x2="585" y2="442" stroke="#334155" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 6: Writer Agent -->
+  <rect x="590" y="380" width="240" height="125" rx="10" fill="#f0fdf4" stroke="#16a34a" stroke-width="2"/>
+  <rect x="590" y="380" width="240" height="30" rx="10" fill="#16a34a"/>
+  <text x="710" y="400" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">6. Writer Agent</text>
+  <text x="710" y="423" text-anchor="middle" font-size="11" font-weight="600" fill="#14532d">app/agents/writer_agent.py</text>
+  <text x="602" y="447" font-size="11" fill="#334155">• filter_unsupported_claims()</text>
+  <text x="602" y="467" font-size="11" fill="#334155">• compile_grounded_report()</text>
+  <text x="602" y="491" font-size="10.5" fill="#166534">Out: Verified Summary + Dropped List</text>
+
+  <!-- Dropped Claims Box -->
+  <rect x="870" y="380" width="190" height="125" rx="10" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="965" y="408" text-anchor="middle" font-size="12.5" font-weight="700" fill="#991b1b">Dropped Claims List</text>
+  <text x="965" y="430" text-anchor="middle" font-size="11" fill="#7f1d1d">(Unsupported / Hallucinated)</text>
+  <text x="965" y="455" text-anchor="middle" font-size="10.5" fill="#991b1b">Pruned from summary;</text>
+  <text x="965" y="472" text-anchor="middle" font-size="10.5" fill="#991b1b">logged in Audit Ledger</text>
+  <line x1="830" y1="442" x2="865" y2="442" stroke="#dc2626" stroke-width="2" marker-end="url(#arrow-red)"/>
+
+  <!-- Outputs Footer -->
+  <rect x="40" y="535" width="1020" height="58" rx="10" fill="#0f172a"/>
+  <text x="550" y="560" text-anchor="middle" font-size="13.5" font-weight="700" fill="#f8fafc">
+    Final Outputs: Themed Literature Summary with Per-Claim Citations [P1..Pn] • Dropped Claims Audit Ledger • Dual-Position Contradiction Dossier • Append-Only Run Log (run_log.jsonl)
+  </text>
+  <text x="550" y="580" text-anchor="middle" font-size="11.5" fill="#94a3b8">
+    Coordinated by AcademicPipelineOrchestrator (app/agents/orchestrator.py)
+  </text>
+</svg>
+

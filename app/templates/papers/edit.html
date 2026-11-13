@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Research Paper - {{ paper.title }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-9">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold mb-0"><i class="fa-solid fa-pen-to-square text-primary me-2"></i>Edit Research Paper</h2>
+            <a href="{{ url_for('papers.detail', paper_id=paper.id) }}" class="btn btn-outline-secondary btn-sm"><i class="fa-solid fa-arrow-left me-1"></i>Cancel</a>
+        </div>
+
+        <div class="card shadow-lg border-0 rounded-3">
+            <div class="card-body p-4">
+                <form method="POST" action="{{ url_for('papers.edit', paper_id=paper.id) }}">
+                    <div class="mb-3">
+                        <label for="title" class="form-label fw-bold">Paper Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="title" name="title" value="{{ paper.title }}" required>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label for="authors" class="form-label">Authors</label>
+                            <input type="text" class="form-control" id="authors" name="authors" value="{{ paper.authors or '' }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="journal" class="form-label">Journal / Conference</label>
+                            <input type="text" class="form-control" id="journal" name="journal" value="{{ paper.journal or '' }}">
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-4">
+                            <label for="publication_year" class="form-label">Publication Year</label>
+                            <input type="number" class="form-control" id="publication_year" name="publication_year" value="{{ paper.publication_year or '' }}" min="1800" max="2100">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="doi" class="form-label">DOI</label>
+                            <input type="text" class="form-control" id="doi" name="doi" value="{{ paper.doi or '' }}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="status" class="form-label">Reading Status</label>
+                            <select class="form-select" id="status" name="status">
+                                <option value="Unread" {% if paper.status == 'Unread' %}selected{% endif %}>Unread</option>
+                                <option value="Reading" {% if paper.status == 'Reading' %}selected{% endif %}>Reading</option>
+                                <option value="Completed" {% if paper.status == 'Completed' %}selected{% endif %}>Completed</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="url" class="form-label">URL Link</label>
+                        <input type="url" class="form-control" id="url" name="url" value="{{ paper.url or '' }}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="keywords" class="form-label">Keywords / Tags</label>
+                        <input type="text" class="form-control" id="keywords" name="keywords" value="{{ paper.keywords or '' }}">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="abstract" class="form-label">Abstract</label>
+                        <textarea class="form-control" id="abstract" name="abstract" rows="5">{{ paper.abstract or '' }}</textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <a href="{{ url_for('papers.detail', paper_id=paper.id) }}" class="btn btn-outline-secondary px-4">Cancel</a>
+                        <button type="submit" class="btn btn-primary px-4"><i class="fa-solid fa-save me-1"></i>Update Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
