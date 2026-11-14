@@ -94,6 +94,19 @@ def test_scenario_1_grounded_pipeline_execution(orchestrator):
     assert len(result["dropped_claims"]) >= 1
     assert "final_report" in result
     assert "markdown_report" in result["final_report"]
+    assert "abstract" in result["final_report"] and len(result["final_report"]["abstract"]) > 50
+    assert "keywords" in result["final_report"] and len(result["final_report"]["keywords"]) >= 3
+    assert "introduction" in result["final_report"]
+    assert "methodology" in result["final_report"]
+    assert "conclusion" in result["final_report"]
+
+    md = result["final_report"]["markdown_report"]
+    assert "## Abstract" in md
+    assert "## 1. Introduction" in md
+    assert "## 2. Review Methodology" in md
+    assert "## 3. Thematic Literature Synthesis" in md
+    assert "## 6. Conclusion" in md
+    assert "## References" in md
 
     retrieved_tags = {p["citation_tag"] for p in result["passages"]}
     for claim in result["retained_claims"]:

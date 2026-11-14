@@ -234,7 +234,7 @@
                 <ul class="nav nav-pills" id="resultTabs" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="summary-tab" data-bs-toggle="pill" data-bs-target="#tab-summary" type="button" role="tab">
-                            01. LITERATURE SUMMARY
+                            01. ACADEMIC PAPER MANUSCRIPT
                         </button>
                     </li>
                     <li class="nav-item" role="presentation">
@@ -263,91 +263,236 @@
             <div class="card-body">
                 <div class="tab-content" id="resultTabsContent">
 
-                    <!-- TAB 1: SOURCED LITERATURE REVIEW -->
+                    <!-- TAB 1: FORMAL ACADEMIC PAPER MANUSCRIPT -->
                     <div class="tab-pane fade show active" id="tab-summary" role="tabpanel">
+                        <!-- Top Action Bar -->
                         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom border-dark">
-                            <h4 class="fw-bold mb-0">{{ result.final_report.title }}</h4>
-                            <form action="{{ url_for('academic_team.export_markdown') }}" method="POST">
-                                <input type="hidden" name="report_title" value="{{ result.final_report.title }}">
-                                <input type="hidden" name="markdown_content" value="{{ result.final_report.markdown_report }}">
-                                <button type="submit" class="btn btn-outline-primary btn-sm">
-                                    <i class="fa-solid fa-download me-1"></i> EXPORT MARKDOWN (.MD)
+                            <div>
+                                <span class="badge bg-primary me-1">MANUSCRIPT // WRITER AGENT OUTPUT</span>
+                                <span class="badge bg-success">100% CRITIC-VERIFIED CLAIMS</span>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="window.print()">
+                                    <i class="fa-solid fa-print me-1"></i> PRINT / SAVE PDF
                                 </button>
-                            </form>
-                        </div>
-
-                        <div class="alert alert-success mb-4">
-                            <strong>GROUNDING CERTIFICATE //</strong> Every retained claim below was audited by the Fact-Check Critic Agent and mapped to a retrieved corpus passage (<code>[P1]</code>–<code>[P{{ result.passages|length }}]</code>). Unsupported claims have been stripped into the Critic Audit Ledger.
-                        </div>
-
-                        <!-- Render Verified Themed Sections -->
-                        {% for theme in result.themes %}
-                        <div class="mb-4 p-3 border border-dark bg-white">
-                            <div class="font-mono small fw-bold text-primary mb-1">THEME // 0{{ loop.index }}</div>
-                            <h5 class="fw-bold border-bottom border-dark pb-2 mb-2">{{ theme.theme }}</h5>
-                            <p class="mb-0" style="font-size: 0.98rem; line-height: 1.7;">{{ theme.content }}</p>
-                        </div>
-                        {% endfor %}
-
-                        <!-- Retained Claims Table -->
-                        <div class="mt-4">
-                            <h6 class="font-mono fw-bold text-uppercase mb-2">VERIFIED ASSERTIONS &amp; PER-CLAIM CITATION MAPPING</h6>
-                            <div class="table-responsive">
-                                <table class="table table-bordered align-middle">
-                                    <thead>
-                                        <tr>
-                                            <th>Claim ID</th>
-                                            <th>Verified Grounded Statement</th>
-                                            <th>Passage Tag</th>
-                                            <th>Source Paper</th>
-                                            <th>Entailment</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for c in result.retained_claims %}
-                                        <tr>
-                                            <td class="font-mono fw-bold">{{ c.claim_id }}</td>
-                                            <td>{{ c.statement }}</td>
-                                            <td><span class="badge bg-primary">{{ c.cited_tag }}</span></td>
-                                            <td class="small fw-semibold">{{ c.source_paper or 'Corpus Reference' }}</td>
-                                            <td><span class="badge bg-success">{{ (c.confidence * 100)|round(0)|int }}% SUPPORTED</span></td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
+                                <form action="{{ url_for('academic_team.export_markdown') }}" method="POST" class="d-inline">
+                                    <input type="hidden" name="report_title" value="{{ result.final_report.title }}">
+                                    <input type="hidden" name="markdown_content" value="{{ result.final_report.markdown_report }}">
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fa-solid fa-download me-1"></i> EXPORT PAPER (.MD)
+                                    </button>
+                                </form>
                             </div>
                         </div>
 
-                        <!-- Dropped Claims Summary Box directly visible in Tab 1 too -->
-                        <div class="mt-4">
-                            <h6 class="font-mono fw-bold text-uppercase text-danger mb-2">CLAIMS DROPPED AS UNSUPPORTED ({{ result.dropped_claims|length }})</h6>
-                            {% if result.dropped_claims %}
-                            <div class="table-responsive">
-                                <table class="table table-bordered align-middle">
-                                    <thead>
-                                        <tr>
-                                            <th>Claim ID</th>
-                                            <th>Dropped Statement</th>
-                                            <th>Cited Tag</th>
-                                            <th>Critic Rejection Reason</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for dc in result.dropped_claims %}
-                                        <tr class="table-danger">
-                                            <td class="font-mono fw-bold">{{ dc.claim_id }}</td>
-                                            <td>{{ dc.statement }}</td>
-                                            <td><span class="badge bg-danger">{{ dc.cited_tag }}</span></td>
-                                            <td class="font-mono small">{{ dc.critic_verdict }}</td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                            {% else %}
-                            <p class="font-mono small text-muted">Zero unsupported claims detected.</p>
-                            {% endif %}
-                        </div>
+                        <!-- Formal Academic Paper Sheet -->
+                        <article class="p-4 p-md-5 border border-dark bg-white" id="academicManuscript">
+                            <!-- Paper Title & Attribution Header -->
+                            <header class="text-center pb-4 mb-4 border-bottom border-dark">
+                                <div class="font-mono small text-uppercase text-muted mb-2">
+                                    SYSTEMATIC LITERATURE REVIEW // PIPELINE + RAG + CRITIC ARCHITECTURE
+                                </div>
+                                <h2 class="fw-bold mb-3" style="font-size: 1.55rem; line-height: 1.35; letter-spacing: -0.02em;">
+                                    {{ result.final_report.title }}
+                                </h2>
+                                <div class="font-mono small fw-semibold mb-1">
+                                    <strong>Authors:</strong> Multi-Agent Academic Synthesis Pipeline (Query Agent, Retrieval Agent, Summary Agent, Fact-Check Critic Agent, Contradiction Agent, Writer Agent)
+                                </div>
+                                <div class="font-mono small text-muted">
+                                    <strong>Research Inquiry:</strong> <em>"{{ result.question }}"</em> &nbsp;|&nbsp;
+                                    <strong>Run ID:</strong> <code>{{ result.run_id }}</code> &nbsp;|&nbsp;
+                                    <strong>Verified Claims:</strong> {{ result.metrics.retained_claims }} &nbsp;|&nbsp;
+                                    <strong>Pruned Claims:</strong> {{ result.metrics.dropped_claims }}
+                                </div>
+                            </header>
+
+                            <!-- Abstract & Keywords Box -->
+                            <section class="p-3 p-md-4 mb-4 border border-dark" style="background-color: var(--bg-surface-alt);">
+                                <h6 class="font-mono fw-bold text-uppercase mb-2">Abstract</h6>
+                                <p class="mb-3" style="font-size: 0.96rem; line-height: 1.75; text-align: justify;">
+                                    {{ result.final_report.abstract }}
+                                </p>
+                                {% if result.final_report.keywords %}
+                                <div class="font-mono small pt-2 border-top border-dark">
+                                    <strong>Keywords:</strong>
+                                    {% for kw in result.final_report.keywords %}
+                                        <span class="badge bg-secondary me-1">{{ kw }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </section>
+
+                            <!-- Section 1: Introduction -->
+                            <section class="mb-4">
+                                <h4 class="font-mono fw-bold text-uppercase border-bottom border-dark pb-2 mb-3" style="font-size: 1.05rem;">
+                                    1. Introduction
+                                </h4>
+                                <p style="font-size: 0.98rem; line-height: 1.75; text-align: justify;">
+                                    {{ result.final_report.introduction }}
+                                </p>
+                            </section>
+
+                            <!-- Section 2: Review Methodology & Critic Verification Protocol -->
+                            <section class="mb-4">
+                                <h4 class="font-mono fw-bold text-uppercase border-bottom border-dark pb-2 mb-3" style="font-size: 1.05rem;">
+                                    2. Review Methodology &amp; Critic Verification Protocol
+                                </h4>
+                                <p style="font-size: 0.98rem; line-height: 1.75; text-align: justify;">
+                                    {{ result.final_report.methodology }}
+                                </p>
+                            </section>
+
+                            <!-- Section 3: Thematic Literature Synthesis -->
+                            <section class="mb-4">
+                                <h4 class="font-mono fw-bold text-uppercase border-bottom border-dark pb-2 mb-3" style="font-size: 1.05rem;">
+                                    3. Thematic Literature Synthesis
+                                </h4>
+
+                                {% for theme in result.themes %}
+                                <div class="mb-4 p-3 border border-dark" style="background-color: #faf9f5;">
+                                    <h5 class="font-mono fw-bold mb-2" style="font-size: 0.98rem;">
+                                        3.{{ loop.index }} {{ theme.theme }}
+                                    </h5>
+                                    <p class="mb-3" style="font-size: 0.97rem; line-height: 1.75; text-align: justify;">
+                                        {{ theme.content }}
+                                    </p>
+
+                                    {% if theme.claims %}
+                                    <div class="font-mono small fw-bold text-uppercase text-muted mb-2">
+                                        Table 3.{{ loop.index }} // Verified Claims &amp; Grounded Evidence Mapping
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-sm table-bordered align-middle mb-0 bg-white">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 90px;">Claim ID</th>
+                                                    <th>Verified Statement</th>
+                                                    <th style="width: 95px;">Citation</th>
+                                                    <th style="width: 240px;">Source Paper</th>
+                                                    <th style="width: 120px;">Entailment</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for c in theme.claims %}
+                                                <tr>
+                                                    <td class="font-mono fw-bold">{{ c.claim_id }}</td>
+                                                    <td class="small">{{ c.statement }}</td>
+                                                    <td><span class="badge bg-primary">{{ c.cited_tag }}</span></td>
+                                                    <td class="small fw-semibold">{{ c.source_paper or 'Corpus Reference' }}</td>
+                                                    <td><span class="badge bg-success">{{ (c.confidence * 100)|round(0)|int }}% VERIFIED</span></td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </section>
+
+                            <!-- Section 4: Cross-Source Contradictions & Competing Positions -->
+                            <section class="mb-4">
+                                <h4 class="font-mono fw-bold text-uppercase border-bottom border-dark pb-2 mb-3" style="font-size: 1.05rem;">
+                                    4. Cross-Source Contradictions &amp; Competing Positions
+                                </h4>
+                                {% if result.contradictions.has_contradictions %}
+                                    {% for d in result.contradictions.dossiers %}
+                                    <div class="mb-3 p-3 border border-dark" style="background-color: #faf9f5;">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <h5 class="font-mono fw-bold mb-0" style="font-size: 0.95rem;">
+                                                4.{{ loop.index }} {{ d.topic }}
+                                            </h5>
+                                            <span class="badge bg-warning">{{ d.divergence_type }}</span>
+                                        </div>
+                                        <div class="row g-3 mb-2">
+                                            <div class="col-md-6">
+                                                <div class="p-3 border border-dark bg-white h-100">
+                                                    <div class="font-mono small fw-bold text-primary mb-1">POSITION A // {{ d.position_a.source }}</div>
+                                                    <div class="small fw-semibold text-muted mb-1"><em>{{ d.position_a.title }}</em></div>
+                                                    <p class="small mb-0">{{ d.position_a.argument }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="p-3 border border-dark bg-white h-100">
+                                                    <div class="font-mono small fw-bold text-danger mb-1">POSITION B // {{ d.position_b.source }}</div>
+                                                    <div class="small fw-semibold text-muted mb-1"><em>{{ d.position_b.title }}</em></div>
+                                                    <p class="small mb-0">{{ d.position_b.argument }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="font-mono small pt-2 border-top border-dark">
+                                            <strong>Comparative Synthesis:</strong> {{ d.synthesis }}
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <p class="small text-muted">No direct cross-source contradictions were detected across the retrieved corpus passages for this query.</p>
+                                {% endif %}
+                            </section>
+
+                            <!-- Section 5: Critic Entailment Audit (Claims Dropped as Unsupported) -->
+                            <section class="mb-4">
+                                <h4 class="font-mono fw-bold text-uppercase border-bottom border-dark pb-2 mb-3" style="font-size: 1.05rem;">
+                                    5. Critic Entailment Audit: Claims Dropped as Unsupported ({{ result.dropped_claims|length }})
+                                </h4>
+                                <p class="small text-muted mb-2">
+                                    To guarantee strict factual grounding, the Fact-Check Critic Agent audited all {{ result.metrics.candidate_claims }} candidate claims against retrieved passages. The following {{ result.dropped_claims|length }} claim(s) failed entailment verification and were excluded from the published synthesis:
+                                </p>
+                                {% if result.dropped_claims %}
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-bordered align-middle mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 90px;">Claim ID</th>
+                                                <th>Excluded Candidate Statement</th>
+                                                <th style="width: 95px;">Cited Tag</th>
+                                                <th>Critic Rejection Rationale</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for dc in result.dropped_claims %}
+                                            <tr class="table-danger">
+                                                <td class="font-mono fw-bold">{{ dc.claim_id }}</td>
+                                                <td class="small">{{ dc.statement }}</td>
+                                                <td><span class="badge bg-danger">{{ dc.cited_tag }}</span></td>
+                                                <td class="font-mono small">{{ dc.critic_verdict }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {% else %}
+                                <p class="font-mono small text-success mb-0">All candidate claims satisfied passage entailment verification (0 claims dropped).</p>
+                                {% endif %}
+                            </section>
+
+                            <!-- Section 6: Conclusion -->
+                            <section class="mb-4">
+                                <h4 class="font-mono fw-bold text-uppercase border-bottom border-dark pb-2 mb-3" style="font-size: 1.05rem;">
+                                    6. Conclusion
+                                </h4>
+                                <p style="font-size: 0.98rem; line-height: 1.75; text-align: justify;">
+                                    {{ result.final_report.conclusion }}
+                                </p>
+                            </section>
+
+                            <!-- References Section -->
+                            <section class="pt-2">
+                                <h4 class="font-mono fw-bold text-uppercase border-bottom border-dark pb-2 mb-3" style="font-size: 1.05rem;">
+                                    References
+                                </h4>
+                                <ol class="list-unstyled mb-0">
+                                    {% for p in result.passages %}
+                                    <li class="mb-2 pb-2 border-bottom font-mono small" style="line-height: 1.6;">
+                                        <span class="badge bg-primary me-2">[{{ p.passage_id }}]</span>
+                                        {{ p.authors }} ({{ p.year }}). <strong>"{{ p.title }}."</strong> <em>{{ p.venue }}</em>.
+                                        {% if p.doi %}DOI: <a href="https://doi.org/{{ p.doi }}" target="_blank" class="text-decoration-underline">{{ p.doi }}</a>{% endif %}
+                                        <span class="text-muted ms-2">[RAG Score: {{ p.relevance_score }}]</span>
+                                    </li>
+                                    {% endfor %}
+                                </ol>
+                            </section>
+                        </article>
                     </div>
 
                     <!-- TAB 2: CRITIC AUDIT LEDGER -->
