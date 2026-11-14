@@ -1,5 +1,5 @@
 """
-Fact-Check Agent Module (CSE476 - Group 16: Academic Research Assistant Team)
+Fact-Check Agent Module
 Role: The CRITIC Agent in the Pipeline with RAG and Critic Architecture.
 Verifies each claim in the summary against retrieved passages and flags unsupported ones.
 """

@@ -1,5 +1,5 @@
 """
-Writer Agent Module (CSE476 - Group 16: Academic Research Assistant Team)
+Writer Agent Module
 Role: Produces the final summary keeping only supported claims, with sources,
 plus an explicit list of any claims dropped as unsupported.
 """

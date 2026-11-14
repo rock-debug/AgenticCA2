@@ -1,5 +1,5 @@
 """
-Query Agent Module (CSE476 - Group 16: Academic Research Assistant Team)
+Query Agent Module
 Role: Turns the user's research question into targeted search sub-queries
 over the provided academic paper set.
 """

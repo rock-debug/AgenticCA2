@@ -1,5 +1,5 @@
 """
-Retrieval Agent Module (CSE476 - Group 16: Academic Research Assistant Team)
+Retrieval Agent Module
 Role: Fetches the relevant passages (RAG) for each sub-query over the paper document set.
 """
 

@@ -1,6 +1,5 @@
 """
-Contradiction Agent Module (CSE476 - Group 16: Academic Research Assistant Team)
-Group of Three Add-On Requirement:
+Contradiction Agent Module
 Role: Reports where two sources disagree and presents both positions in a structured dossier.
 """
 
@@ -15,7 +14,7 @@ from app.agents.tools import (
 
 class ContradictionAgent:
     """
-    ContradictionAgent (Group of Three Add-On):
+    ContradictionAgent:
     Specialized agent module responsible for detecting empirical disagreements, conflicting
     paradigms, and methodological debates across retrieved sources, formatting them
     into a balanced, dual-perspective dossier.

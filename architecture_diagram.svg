@@ -19,7 +19,7 @@
     Pipeline with RAG and a Critic Architecture (Microsoft Semantic Kernel)
   </text>
   <text x="550" y="60" text-anchor="middle" font-size="13" fill="#475569">
-    6 Modular Agents • 2 Plain Python Tools per Agent • Grounded Corpus RAG • Critic Entailment Gate • Group-of-3 Contradiction Add-On
+    6 Modular Agents • 2 Plain Python Tools per Agent • Grounded Corpus RAG • Critic Entailment Gate • Contradiction Dossier
   </text>
 
   <!-- Shared State / RAG Memory Banner -->
@@ -80,10 +80,10 @@
   <path d="M 950 310 L 950 345 L 410 345 L 410 375" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow-green)"/>
   <text x="680" y="338" text-anchor="middle" font-size="11" font-weight="600" fill="#15803d">Audited Claims + Grounded Passages [P1..Pn]</text>
 
-  <!-- Step 5: Contradiction Agent (Group of 3) -->
+  <!-- Step 5: Contradiction Agent -->
   <rect x="290" y="380" width="240" height="125" rx="10" fill="#fffbeb" stroke="#d97706" stroke-width="2"/>
   <rect x="290" y="380" width="240" height="30" rx="10" fill="#d97706"/>
-  <text x="410" y="400" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">5. Contradiction Agent (Grp of 3)</text>
+  <text x="410" y="400" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">5. Contradiction Agent</text>
   <text x="410" y="423" text-anchor="middle" font-size="11" font-weight="600" fill="#78350f">app/agents/contradiction_agent.py</text>
   <text x="302" y="447" font-size="11" fill="#334155">• detect_cross_source_divergence()</text>
   <text x="302" y="467" font-size="11" fill="#334155">• synthesize_contradiction_dossier()</text>

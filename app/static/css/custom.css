@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AGENTIC.DAT // GROUP 16 — SWISS ARCHIVAL & TECHNICAL GRID DESIGN SYSTEM
+   AGENTIC.DAT // RESEARCH — SWISS ARCHIVAL & TECHNICAL GRID DESIGN SYSTEM
    Inspired by RYAN.DAT architectural drafting grid & monospace lab notebook
    ========================================================================== */
 
@@ -283,7 +283,7 @@ pre {
 }
 
 .blueprint-hero::before {
-  content: "DOC // CSE476-TASK2-G16";
+  content: "SYS // PIPELINE-RAG-CRITIC";
   position: absolute;
   top: 0;
   right: 0;

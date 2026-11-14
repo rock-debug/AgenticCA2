@@ -1,5 +1,5 @@
 """
-Database Seeder for Agentic AI (CSE476 - Group 16)
+Database Seeder for Academic Research Assistant System
 Creates default researcher and admin accounts and populates the research corpus.
 """
 

@@ -1,5 +1,5 @@
 """
-Curated Paper Corpus for Academic Research Assistant Team (CSE476 - Group 16)
+Curated Paper Corpus for Academic Research Assistant System
 Provides authoritative grounded document passages with metadata, authors, DOI, and sections.
 """
 

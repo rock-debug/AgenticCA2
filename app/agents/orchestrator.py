@@ -1,5 +1,5 @@
 """
-Academic Research Assistant Team Orchestrator (CSE476 - Group 16)
+Academic Research Assistant Orchestrator
 Architecture: Pipeline with RAG and a Critic Architecture.
 Framework: Microsoft Semantic Kernel (Python).
 Coordinates 6 specialized modular agents over shared pipeline state with append-only run logging.
@@ -99,7 +99,7 @@ class AcademicPipelineOrchestrator:
         2. RetrievalAgent -> RAG search & ranking over provided paper corpus
         3. SummaryAgent -> thematic clustering & draft claims
         4. FactCheckAgent (Critic) -> audits claim entailment & flags unsupported claims
-        5. ContradictionAgent (Group of 3) -> scans cross-source academic divergence
+        5. ContradictionAgent -> scans cross-source academic divergence
         6. WriterAgent -> purges unsupported claims & compiles sourced literature review
         """
         pipeline_start = time.time()
@@ -172,7 +172,7 @@ class AcademicPipelineOrchestrator:
         audited_claims = fact_check_out.get("audited_claims", [])
 
         # -------------------------------------------------------------
-        # STEP 5: Contradiction Agent (Group of Three - Cross-Source Divergence)
+        # STEP 5: Contradiction Agent (Cross-Source Divergence)
         # -------------------------------------------------------------
         contradiction_out = self.contradiction_agent.execute(
             passages=passages,
@@ -239,7 +239,7 @@ class AcademicPipelineOrchestrator:
         return result
 
     def _append_to_run_log(self, run_record: Dict[str, Any]):
-        """Appends run record to append-only run log (rubric deliverable requirement)."""
+        """Appends run record to append-only run log."""
         try:
             log_entry = {
                 "run_id": run_record["run_id"],

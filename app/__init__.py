@@ -70,7 +70,7 @@ def create_app(config_name=None):
             "database_connected": db_connected,
             "database_error": db_error,
             "groq_api_configured": bool(app.config.get("GROQ_API_KEY")),
-            "system": "Agentic AI Multi-Agent System (CSE476 - Group 16)"
+            "system": "Academic Research Assistant Multi-Agent System"
         }), 200
 
     # Create tables automatically for SQLite/Dev

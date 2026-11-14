@@ -1,4 +1,4 @@
-# Agentic AI & Intelligent Automation (CSE476 - Group 16)
+# Academic Research Assistant Multi-Agent System
 Flask>=3.1.0
 Flask-SQLAlchemy>=3.1.1
 Flask-Login>=0.6.3

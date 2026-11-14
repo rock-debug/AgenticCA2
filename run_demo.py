@@ -1,5 +1,5 @@
 """
-Command-Line Runner for CSE476 Group 16: Academic Research Assistant Team
+Command-Line Runner for Academic Research Assistant Multi-Agent System
 Executes the 6-agent pipeline and prints formatted step-by-step trace and findings.
 """
 
@@ -14,8 +14,7 @@ from app.agents import AcademicPipelineOrchestrator
 
 def main():
     print("\n" + "=" * 70)
-    print("  CSE476: AGENTIC AI & INTELLIGENT AUTOMATION -- TASK 2 PROJECT")
-    print("  GROUP 16: AUTOMATED ACADEMIC RESEARCH ASSISTANT TEAM")
+    print("  AUTOMATED ACADEMIC RESEARCH ASSISTANT MULTI-AGENT SYSTEM")
     print("  Framework: Microsoft Semantic Kernel | Architecture: Pipeline + RAG + Critic")
     print("=" * 70 + "\n")
 
@@ -50,7 +49,7 @@ def main():
 
     if result['contradictions'].get('has_contradictions'):
         print("\n" + "=" * 70)
-        print("  CONTRADICTION AGENT DOSSIER (Group of 3 Requirement)")
+        print("  CONTRADICTION AGENT DOSSIER (Cross-Source Divergence)")
         print("=" * 70)
         for d in result['contradictions']['dossiers']:
             print(f"\n[Topic] {d['topic']}")

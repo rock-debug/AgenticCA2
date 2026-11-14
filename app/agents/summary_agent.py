@@ -1,5 +1,5 @@
 """
-Summary Agent Module (CSE476 - Group 16: Academic Research Assistant Team)
+Summary Agent Module
 Role: Writes a structured summary grouped by theme from retrieved passages.
 """
 

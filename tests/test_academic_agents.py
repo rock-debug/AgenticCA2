@@ -1,10 +1,10 @@
 """
-Comprehensive Test Suite for CSE476 Group 16: Academic Research Assistant Team
+Comprehensive Test Suite for Academic Research Assistant Multi-Agent System
 Covers the required scenarios and structural contracts:
 1. Plain Python Tool Functions & Semantic Kernel Plugin Contract (>= 2 real tools per agent)
 2. Scenario 1: Grounded Literature Synthesis, Per-Claim Passage Mapping & Multi-Agent Trace
 3. Scenario 2: Critic Failure Handling (Detecting & Pruning Unsupported / Hallucinated Claims)
-4. Scenario 3: Contradiction Detection & Dual-Perspective Dossier (Group of 3 Add-On)
+4. Scenario 3: Contradiction Detection & Dual-Perspective Dossier
 """
 
 import inspect
@@ -40,7 +40,7 @@ def orchestrator():
 
 def test_plain_python_tools_contract(orchestrator):
     """
-    Rubric Requirement: Each working agent calls at least two real tools written as plain Python functions.
+    Tool Contract: Each working agent calls at least two real tools written as plain Python functions.
     Verifies that all 12 tools exist as standalone plain Python functions and are registered in Semantic Kernel.
     """
     plain_functions = [
@@ -144,7 +144,7 @@ def test_scenario_2_critic_catches_and_prunes_hallucinations(orchestrator):
 
 def test_scenario_3_contradiction_detection_dual_perspective(orchestrator):
     """
-    SCENARIO 3: Contradiction Detection & Balanced Dossier (Group of Three Add-On).
+    SCENARIO 3: Contradiction Detection & Balanced Dossier.
     Verifies:
     - Pipeline detects conflicting academic positions across retrieved literature.
     - Contradiction Agent articulates Position A vs Position B with source grounding.

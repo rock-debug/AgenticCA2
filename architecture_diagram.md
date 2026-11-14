@@ -11,7 +11,7 @@ flowchart TD
     R -->|"Ranked Passages [P1..Pn]"| S["3. Summary Agent (app/agents/summary_agent.py)<br/>Tools: cluster_passages_by_themes(), draft_themed_synthesis()"]
     S -->|"Themed Draft & Candidate Claims"| F{"4. Fact-Check Agent / THE CRITIC<br/>(app/agents/fact_check_agent.py)<br/>Tools: extract_atomic_claims(), audit_claim_entailment()"}
     F -->|"Flagged UNSUPPORTED"| Dropped["Dropped Claims Audit Ledger"]
-    F -->|"Audited Claims (SUPPORTED / UNSUPPORTED)"| C["5. Contradiction Agent - Group of 3<br/>(app/agents/contradiction_agent.py)<br/>Tools: detect_cross_source_divergence(), synthesize_contradiction_dossier()"]
+    F -->|"Audited Claims (SUPPORTED / UNSUPPORTED)"| C["5. Contradiction Agent<br/>(app/agents/contradiction_agent.py)<br/>Tools: detect_cross_source_divergence(), synthesize_contradiction_dossier()"]
     R -->|"Retrieved Passages"| C
     C -->|"Dual-Perspective Dossier (Position A vs. Position B)"| W["6. Writer Agent (app/agents/writer_agent.py)<br/>Tools: filter_unsupported_claims(), compile_grounded_report()"]
     F -->|"Audited Claims"| W

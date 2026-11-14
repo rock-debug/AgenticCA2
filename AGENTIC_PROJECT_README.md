@@ -1,6 +1,4 @@
-# CSE476: Agentic AI and Intelligent Automation
-## Multi-Agent System Project Report (At Most Two Pages)
-**Project:** Automated Academic Literature Review & Fact-Checking System (Group of 3 Configuration)  
+# Automated Academic Research Assistant Multi-Agent System
 **Coordination Architecture:** Pipeline with RAG and a Critic Architecture  
 **Core Framework:** Microsoft Semantic Kernel (`semantic-kernel`) + Plain Python Tool Functions  
 
@@ -15,7 +13,7 @@ The system consists of **six specialized agents**, each implemented as a separat
 | **2** | **Retrieval Agent**<br>`app/agents/retrieval_agent.py` | Fetches relevant passages (RAG) from the provided paper corpus for each sub-query. | 1. `search_paper_passages(sub_queries, top_k)` — TF-IDF bigram cosine similarity search over corpus chunks.<br>2. `filter_and_rank_passages(passages, min_score)` — deduplicates by `(paper_id, section)` and assigns `[P1..Pn]` citation tags. |
 | **3** | **Summary Agent**<br>`app/agents/summary_agent.py` | Writes a structured candidate summary grouped by academic theme. | 1. `cluster_passages_by_themes(passages)` — categorizes passages into Architecture, Performance, and Governance themes.<br>2. `draft_themed_synthesis(themes, question)` — drafts candidate claims citing `[P1..Pn]`. |
 | **4** | **Fact-Check Agent (Critic)**<br>`app/agents/fact_check_agent.py` | Verifies every candidate claim against retrieved passages and flags unsupported ones. | 1. `extract_atomic_claims(candidate_claims)` — isolates normalized proposition statements and cited tags.<br>2. `audit_claim_entailment(claims, passages)` — computes lexical/semantic entailment overlap against the cited passage and flags `SUPPORTED` vs. `UNSUPPORTED`. |
-| **5** | **Contradiction Agent**<br>*(Group-of-3 Add-On)*<br>`app/agents/contradiction_agent.py` | Reports where two sources disagree and presents both opposing positions. | 1. `detect_cross_source_divergence(passages)` — detects conflicting conclusions across retrieved sources.<br>2. `synthesize_contradiction_dossier(divergences)` — formats balanced dual-position dossiers (`position_a` vs. `position_b`). |
+| **5** | **Contradiction Agent**<br>`app/agents/contradiction_agent.py` | Reports where two sources disagree and presents both opposing positions. | 1. `detect_cross_source_divergence(passages)` — detects conflicting conclusions across retrieved sources.<br>2. `synthesize_contradiction_dossier(divergences)` — formats balanced dual-position dossiers (`position_a` vs. `position_b`). |
 | **6** | **Writer Agent**<br>`app/agents/writer_agent.py` | Produces the final summary keeping only supported claims with sources, plus the dropped claims list. | 1. `filter_unsupported_claims(audited_claims)` — partitions claims into `retained_claims` and `dropped_claims`.<br>2. `compile_grounded_report(retained, dropped, contradictions, sources, question)` — compiles the verified themed summary, contradiction dossier, dropped-claim audit ledger, and bibliography. |
 
 ---
@@ -24,7 +22,7 @@ The system consists of **six specialized agents**, each implemented as a separat
 Academic literature synthesis requires strict factual grounding; single-agent prompts suffer from context dilution, fabricated citations, and confirmation bias when papers disagree. The **Pipeline with RAG and a Critic Architecture** (`app/agents/orchestrator.py`) directly addresses these failure modes:
 1. **Staged Grounded Pipeline:** Execution flows deterministically (`Query Agent` $\to$ `Retrieval Agent` $\to$ `Summary Agent` $\to$ `Fact-Check Critic` $\to$ `Contradiction Agent` $\to$ `Writer Agent`) over a shared state dictionary (`shared_state`).
 2. **Non-Bypassable Critic Gate:** The **Fact-Check Agent** sits between drafting (`Summary Agent`) and publication (`Writer Agent`). Every retained claim is guaranteed to map to a retrieved passage `[P1..Pn]`.
-3. **Balanced Contradiction Reporting (Group-of-3):** Rather than suppressing conflicting studies, the **Contradiction Agent** inspects retrieved passages to surface opposing positions side by side.
+3. **Balanced Contradiction Reporting:** Rather than suppressing conflicting studies, the **Contradiction Agent** inspects retrieved passages to surface opposing positions side by side.
 
 ```mermaid
 flowchart TD
@@ -34,7 +32,7 @@ flowchart TD
     B -->|"Ranked Passages [P1..Pn]"| C["3. Summary Agent"]
     C -->|"Themed Draft & Candidate Claims"| D{"4. Fact-Check Agent (THE CRITIC)"}
     D -->|"Flagged UNSUPPORTED"| X["Dropped Claims Ledger"]
-    D -->|"Audited Claims"| E["5. Contradiction Agent (Group of 3)"]
+    D -->|"Audited Claims"| E["5. Contradiction Agent"]
     B -->|"Retrieved Passages"| E
     E -->|"Dual Positions (A vs. B)"| F["6. Writer Agent"]
     D -->|"Verified Claims"| F

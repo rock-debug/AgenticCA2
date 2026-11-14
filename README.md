@@ -1,5 +1,4 @@
-# Automated Academic Research Assistant Team (CSE476 — Group 16)
-**Group Configuration:** Group of 3 (Includes Contradiction Agent Add-On)  
+# Automated Academic Research Assistant Multi-Agent System
 **Coordination Architecture:** Pipeline with RAG and a Critic Architecture  
 **Framework:** Microsoft Semantic Kernel (`semantic-kernel`) + Plain Python Tool Functions  
 
@@ -14,7 +13,7 @@ This system is built from **six separate agent modules** (`app/agents/`), each w
 | **2. Retrieval Agent**<br>`app/agents/retrieval_agent.py` | Fetches relevant passages (RAG) from the provided paper corpus for each sub-query. | `search_paper_passages(sub_queries, top_k)`<br>`filter_and_rank_passages(passages, min_score)` |
 | **3. Summary Agent**<br>`app/agents/summary_agent.py` | Writes a structured candidate summary grouped by theme. | `cluster_passages_by_themes(passages)`<br>`draft_themed_synthesis(themes, question)` |
 | **4. Fact-Check Agent (Critic)**<br>`app/agents/fact_check_agent.py` | Verifies each claim in the summary against retrieved passages and flags unsupported ones. | `extract_atomic_claims(candidate_claims)`<br>`audit_claim_entailment(claims, passages)` |
-| **5. Contradiction Agent**<br>`app/agents/contradiction_agent.py` | *(Group-of-3 Add-On)* Reports where two sources disagree and presents both positions. | `detect_cross_source_divergence(passages)`<br>`synthesize_contradiction_dossier(divergences)` |
+| **5. Contradiction Agent**<br>`app/agents/contradiction_agent.py` | Reports where two sources disagree and presents both positions. | `detect_cross_source_divergence(passages)`<br>`synthesize_contradiction_dossier(divergences)` |
 | **6. Writer Agent**<br>`app/agents/writer_agent.py` | Produces the final summary keeping only supported claims with sources and dropped-claim list. | `filter_unsupported_claims(audited_claims)`<br>`compile_grounded_report(retained, dropped, ...)` |
 
 ---
@@ -36,7 +35,7 @@ flowchart TD
     B -->|"Ranked Passages [P1..Pn]"| C["3. Summary Agent"]
     C -->|"Themed Draft & Candidate Claims"| D{"4. Fact-Check Agent (THE CRITIC)"}
     D -->|"Flagged UNSUPPORTED"| X["Dropped Claims Audit Ledger"]
-    D -->|"Audited Claims"| E["5. Contradiction Agent (Group of 3)"]
+    D -->|"Audited Claims"| E["5. Contradiction Agent"]
     B -->|"Retrieved Passages"| E
     E -->|"Dual Positions (A vs. B)"| F["6. Writer Agent"]
     D -->|"Verified Claims"| F

@@ -1,5 +1,5 @@
 """
-Plain Python Tools for Academic Research Assistant Team (CSE476 - Group 16)
+Plain Python Tools for Academic Research Assistant Multi-Agent System
 Each agent in the pipeline calls at least two real Python tool functions.
 All 12 tools are implemented as standalone plain Python functions and also
 exposed as Semantic Kernel @kernel_function plugins.
@@ -505,14 +505,14 @@ class FactCheckAgentTools:
 
 
 # ==============================================================================
-# 5. CONTRADICTION AGENT PLAIN PYTHON TOOLS (GROUP OF THREE ADD-ON)
+# 5. CONTRADICTION AGENT PLAIN PYTHON TOOLS
 # ==============================================================================
 
 def detect_cross_source_divergence(
     passages: List[Dict[str, Any]]
 ) -> List[Dict[str, Any]]:
     """
-    Plain Python tool 1 for ContradictionAgent (Group of 3 Add-On):
+    Plain Python tool 1 for ContradictionAgent:
     Scans retrieved passages to identify where two sources or paradigms disagree
     and extracts both opposing positions with citations.
     """
@@ -587,7 +587,7 @@ def synthesize_contradiction_dossier(
     divergences: List[Dict[str, Any]]
 ) -> Dict[str, Any]:
     """
-    Plain Python tool 2 for ContradictionAgent (Group of 3 Add-On):
+    Plain Python tool 2 for ContradictionAgent:
     Formats detected cross-source disagreements into a balanced dual-position dossier.
     """
     if not divergences:

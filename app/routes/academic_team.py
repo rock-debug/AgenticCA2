@@ -1,5 +1,5 @@
 """
-Academic Research Assistant Team Route Blueprint (CSE476 - Group 16)
+Academic Research Assistant Team Route Blueprint
 Interactive Web Interface & Execution API for Multi-Agent Pipeline.
 """
 

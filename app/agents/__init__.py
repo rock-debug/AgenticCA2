@@ -1,5 +1,5 @@
 """
-Academic Research Assistant Team (CSE476 - Group 16)
+Academic Research Assistant Multi-Agent System
 Architecture: Pipeline with RAG and a Critic Architecture
 Framework: Microsoft Semantic Kernel
 """
